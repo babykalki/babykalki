@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>BabyKalki change history (v1.3)</title>
+<title>BabyKalki change history (v1.3.1)</title>
 <meta name="description" content="Every earlier version of BabyKalki, newest first: what changed and what was tested.">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://bk.openkalki.org/changes.html">
@@ -281,7 +281,7 @@ figure.shot{margin:14px 0}figure.shot img{display:block;width:100%;height:auto;b
 /* v0.8 (R2-15): phones get one row of site bar and a one-line banner */
 @media(max-width:480px){.banner .blong{display:none}.banner{padding:6px 10px}
 .sitebar .wrap{flex-wrap:nowrap;overflow-x:auto;white-space:nowrap;gap:0 14px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
-.sitebar .wrap::-webkit-scrollbar{display:none}.sitebar .sb-name,.sitebar .sb-long{display:none}.sitebar .wrap{gap:0 13px}}
+.sitebar .wrap::-webkit-scrollbar{display:none}.sitebar .sb-name,.sitebar .sb-long,.sitebar a[href^="https://github.com"]{display:none}.sitebar .wrap{gap:0 13px}}
 /* v1.3: two paths — choose cards in the hero */
 .choose-h{margin:26px 0 10px;font-size:22px;line-height:1.25;border:0;padding:0}
 .pathcard{display:flex;flex-direction:column;gap:6px;border-color:var(--b3)}
@@ -303,8 +303,8 @@ html{scroll-padding-top:calc(var(--navh) + 12px)}
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<div class="sitebar"><div class="wrap"><span class="sb-name">BabyKalki</span><a href="/">Guide</a><a href="/files.html">Files</a><a href="/encyclopedia/">Encyclopedia</a><a href="/status/"><span class="sb-long">Live </span>status</a><a href="/community/">Community</a></div></div>
-<div class="banner"><b>v1.3 — 22 Nov 2026</b> — the change history. <a href="./">Back to the guide</a></div>
+<div class="sitebar"><div class="wrap"><span class="sb-name">BabyKalki</span><a href="/">Guide</a><a href="/files.html">Files</a><a href="/encyclopedia/">Encyclopedia</a><a href="/status/"><span class="sb-long">Live </span>status</a><a href="/community/">Community</a><a href="https://github.com/babykalki/babykalki" rel="noopener">GitHub</a></div></div>
+<div class="banner"><b>v1.3.1 — 22 Nov 2026</b> — the change history. <a href="./">Back to the guide</a></div>
 <nav class="top" aria-label="Site">
   <div class="wrap row1">
     <a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E4DCFF"/><stop offset=".55" stop-color="#8E7DFF"/><stop offset="1" stop-color="#4B3FD6"/></linearGradient></defs><path d="M16 27C7 25 3 18 4 11c6 2 11 8 12 16z" fill="#4B3FD6" opacity=".7"/><path d="M16 27c9-2 13-9 12-16-6 2-11 8-12 16z" fill="#4B3FD6" opacity=".7"/><path d="M16 27C10 24 9 14 16 5c7 9 6 19 0 22z" fill="url(#lg)"/><circle cx="16" cy="24.4" r="1.9" fill="#E8B339"/></svg> BabyKalki</a>
@@ -313,11 +313,21 @@ html{scroll-padding-top:calc(var(--navh) + 12px)}
 </nav>
 <main class="wrap" id="main" tabindex="-1">
 <header class="hero" id="top" style="padding-bottom:6px">
-  <div class="eyebrow">BabyKalki · v1.3</div>
+  <div class="eyebrow">BabyKalki · v1.3.1</div>
   <h1 style="font-size:clamp(28px,5vw,40px)">Change history</h1>
   <p class="lead">Every earlier version of BabyKalki, newest first. What changed in the current version is on <a href="./#changes">the guide page</a>.</p>
 </header>
 <section id="history" style="border-top:0;padding-top:10px">
+  <h3>v1.3 — 22 Nov 2026 (afternoon)</h3>
+  <p class="small">Two paths, side by side.</p>
+  <ul class="changes small">
+    <li><b>Two equal ways to get BabyKalki, everywhere:</b> <a href="./#levels">Path A — Build it yourself with Claude Code</a> and <a href="./#oneclick">Path B — One-click on Nimbuz</a>. The top of the page now starts with "Choose your path": who each is for, what you need, time, monthly cost and what you get.</li>
+    <li><b>New section <a href="./#paths">04 · Choose your path</a>:</b> the side-by-side table, our advice (B to try, A for your real memory), "can I switch later?" (yes; a migration guide is coming) and which sections apply to which path.</li>
+    <li><b>Path B is now a full section (06):</b> what you need, the form step by step with screenshots, first login, the naming ceremony and your first hour, its limits, and how to resize, stop or delete. The levels are labelled as Path A (05); sections renumbered.</li>
+    <li>Every section that differs says which path it describes: the map, files, Cloudflare, dashboards, connections, use cases, costs (Path B line and totals), community, safety, enforced vs advisory (four Path B rows), personal data, war stories and questions — five new ones: which path, is there a one-click install, do I need Claude Code, can I switch, who runs Path B.</li>
+    <li>The encyclopedia, the community desk's knowledge and the files page say the same.</li>
+    <li>Kit files: version number only (v1.3); nothing else changed.</li>
+  </ul>
   <h3>v1.2 — 22 Nov 2026 (morning)</h3>
   <p class="small">Path B: one-click on Nimbuz.</p>
   <ul class="changes small">
@@ -417,7 +427,7 @@ html{scroll-padding-top:calc(var(--navh) + 12px)}
 </main>
 <footer id="licence">
   <div class="wrap">
-    <div class="lic">Code, configs and prompts: MIT. Guide text and diagrams: CC BY 4.0. Data: CC0. © 2026 Robin Dey. Cite as: Dey, R. (2026), BabyKalki v1.3, https://bk.openkalki.org/. "BabyKalki"/"OpenKalki" are project names. Third-party tools are used under their own terms.</div>
+    <div class="lic">Code, configs and prompts: MIT. Guide text and diagrams: CC BY 4.0. Data: CC0. © 2026 Robin Dey. Cite as: Dey, R. (2026), BabyKalki v1.3.1, https://bk.openkalki.org/. "BabyKalki"/"OpenKalki" are project names. Third-party tools are used under their own terms.</div>
     <p><a href="index.html">Back to the guide</a> · <a href="community/">Community on Telegram (QR code)</a> · <a href="changes.html">Change history</a></p>
   </div>
 </footer>

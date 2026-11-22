@@ -259,7 +259,7 @@ figure.dia figcaption{text-align:center;font-size:13px;color:var(--tx3);margin-t
 .dia .ring{fill:none;stroke-width:1.5}.dia .r1{fill:#7C6CFF22;stroke:#8E7DFF}.dia .r2{stroke:#5A4BCF;stroke-dasharray:4 3}.dia .r3{stroke:var(--tx3);stroke-dasharray:2 4}
 .dia .frame{fill:none;stroke:var(--b2);stroke-dasharray:6 4}
 .commcard{display:flex;gap:16px;align-items:center;background:linear-gradient(135deg,#221B3E,#151124);border:1px solid var(--b3);border-radius:var(--r);padding:16px 18px;margin:18px 0}.commcard img{flex:none;background:#fff;border-radius:10px;padding:6px}.commcard b{font-size:17px}.commcard p{margin:6px 0 0;color:var(--tx2)}@media (max-width:520px){.commcard{flex-direction:column;text-align:center}}
-.top .site{display:flex;gap:14px;margin-left:14px;font-size:14px;font-weight:600;white-space:nowrap}.top .site a{color:var(--tx2)}.top .site a:hover{color:var(--petal)}@media (max-width:1100px){.top .site{display:none}}footer .site{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:14px;font-weight:600}
+.top .site{display:flex;gap:14px;margin-left:14px;font-size:14px;font-weight:600;white-space:nowrap}.top .site a{color:var(--tx2)}.top .site a:hover{color:var(--petal)}@media (max-width:1100px){.top .site{display:none}}footer .site{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:14px;font-weight:600}code{overflow-wrap:anywhere}
 @media print{.top,.toc,.tabbar,footer,form.ask{display:none!important}body{background:#fff;color:#000}main{max-width:none}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 .cz .av{font-size:22px;line-height:1}
@@ -269,7 +269,7 @@ figure.dia figcaption{text-align:center;font-size:13px;color:var(--tx3);margin-t
 <header class="top">
   <button id="menubtn" aria-label="Open chapters">☰</button>
   <a class="brand" href="#/"><span id="brandmark"></span><span><span class="w1">Baby</span><span class="w2">Kalki</span><small>Encyclopedia</small></span></a>
-  <nav class="site" aria-label="BabyKalki site"><a href="/">Guide</a><a href="/files.html">Files</a><a href="/status/">Live status</a><a href="/community/">Community</a></nav>
+  <nav class="site" aria-label="BabyKalki site"><a href="/">Guide</a><a href="/files.html">Files</a><a href="/status/">Live status</a><a href="/community/">Community</a><a href="https://github.com/babykalki/babykalki" rel="noopener">GitHub</a></nav>
   <form id="topask" role="search"><input name="q" type="search" placeholder="Ask anything… (press /)" aria-label="Ask a question" autocomplete="off"></form>
   <div id="prog" title="Your progress (stored only in this browser)"><b><i></i></b><span></span></div>
 </header>
@@ -279,8 +279,8 @@ figure.dia figcaption{text-align:center;font-size:13px;color:var(--tx3);margin-t
   <main id="main" tabindex="-1"><noscript><p>This encyclopedia needs JavaScript to show its chapters.</p></noscript></main>
 </div>
 <footer>
-  <p class="site"><a href="/">The guide</a><a href="/files.html">Every file</a><a href="/status/">Live status</a><a href="https://t.me/babykalki" rel="noopener">Community on Telegram</a></p>
-  <p><b>BabyKalki Encyclopedia</b> · edition of 22 November 2026 · based on <b>BabyKalki v1.3</b> (22 Nov 2026), the founder's guide by Robin Dey · <a href="https://bk.openkalki.org/">read the full guide</a>.</p>
+  <p class="site"><a href="/">The guide</a><a href="/files.html">Every file</a><a href="/status/">Live status</a><a href="https://t.me/babykalki" rel="noopener">Community on Telegram</a><a href="https://github.com/babykalki/babykalki" rel="noopener">Source on GitHub</a></p>
+  <p><b>BabyKalki Encyclopedia</b> · edition of 22 November 2026 · based on <b>BabyKalki v1.3.1</b> (22 Nov 2026), the founder's guide by Robin Dey · <a href="https://bk.openkalki.org/">read the full guide</a>.</p>
   <p>Public reference. No tracking, no cookies, no external services — your progress is stored only in this browser. Facts, versions and prices are copied from the guide, which checked them against public sources on 17–18 Nov 2026 and followed L3 end to end in an automated Nimbuz dry run on 19 Nov 2026; the founder's own BabyKalki runs live on Nimbuz and serves this site (since 20 Nov 2026), and its L6 community desk runs in the Telegram group t.me/babykalki (since 20 Nov 2026, full checklist still to verify); items marked <i>to verify</i> or <i>preview</i> are not yet tested. Code, configs and prompts: MIT · text and diagrams: CC BY 4.0 · © 2026 Robin Dey. Third-party names belong to their owners; no endorsement implied. Plus Jakarta Sans is used under the SIL Open Font License (<a href="fonts/OFL.txt">licence</a>).</p>
 </footer>
 <nav class="tabbar" aria-label="Main">
@@ -290,11 +290,11 @@ figure.dia figcaption{text-align:center;font-size:13px;color:var(--tx3);margin-t
   <a href="#/citizens"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.5 3.4-5.5 6.5-5.5s5.7 2 6.5 5.5"/><circle cx="17" cy="9" r="2.5"/><path d="M16 14.6c2.6.1 4.6 1.9 5.3 4.9"/></svg>Citizens</a>
   <a href="#/quiz"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.4 6.8 19.1l1-5.8L3.5 9.2l5.9-.9z"/></svg>Quiz</a>
 </nav>
-<script src="js/diagrams.js?v=v1.3-13eadd41"></script>
-<script src="js/content-1.js?v=v1.3-13eadd41"></script>
-<script src="js/content-2.js?v=v1.3-13eadd41"></script>
-<script src="js/qa.js?v=v1.3-13eadd41"></script>
-<script src="js/citizens.js?v=v1.3-13eadd41"></script>
-<script src="js/app.js?v=v1.3-13eadd41"></script>
+<script src="js/diagrams.js?v=v1.3.1-a723c25a"></script>
+<script src="js/content-1.js?v=v1.3.1-a723c25a"></script>
+<script src="js/content-2.js?v=v1.3.1-a723c25a"></script>
+<script src="js/qa.js?v=v1.3.1-a723c25a"></script>
+<script src="js/citizens.js?v=v1.3.1-a723c25a"></script>
+<script src="js/app.js?v=v1.3.1-a723c25a"></script>
 </body>
 </html>

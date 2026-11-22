@@ -1,13 +1,13 @@
-# CLAUDE.md — standing rules for building BabyKalki (v1.3; rules unchanged since v0.5 unless marked)
-# Put this file in the root of your BabyKalki folder on your laptop (it is in babykalki-files-v1.3.zip — the zip named on the guide page).
+# CLAUDE.md — standing rules for building BabyKalki (v1.3.1; rules unchanged since v0.5 unless marked)
+# Put this file in the root of your BabyKalki folder on your laptop (it is in babykalki-files-v1.3.1.zip — the zip named on the guide page).
 # Claude Code reads it at the start of every session.
 
 ## Who you are working for
 - You are building and looking after BabyKalki for ONE founder: me.
 - BabyKalki = six AI citizens running in one container on Nimbuz, reached through Cloudflare.
 - The guide this came from is the source of truth. If this file and the guide disagree, ask me.
-- The files come from the zip named on the guide page (babykalki-files-v1.3.zip for this version). Before using them, check its SHA-256 against the number on the guide
-  page (`shasum -a 256 babykalki-files-v1.3.zip` on macOS, `sha256sum` on Linux), unzip it into an EMPTY folder (the
+- The files come from the zip named on the guide page (babykalki-files-v1.3.1.zip for this version). Before using them, check its SHA-256 against the number on the guide
+  page (`shasum -a 256 babykalki-files-v1.3.1.zip` on macOS, `sha256sum` on Linux), unzip it into an EMPTY folder (the
   files sit at the top of the zip, with no folder around them) and run `sha256sum -c SHA256SUMS` in that folder. Do not retype or "improve" the files from memory; change them only when I ask.
 
 ## The seven rules (the BabyKalki rulebook)

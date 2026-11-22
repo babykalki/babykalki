@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>BabyKalki files — every file in full (v1.3)</title>
-<meta name="description" content="Every file of BabyKalki v1.3 in full, with Copy and Download, and the checked zip (for Path A, build it yourself with Claude Code; the one-click Path B on Nimbuz needs no download).">
+<title>BabyKalki files — every file in full (v1.3.1)</title>
+<meta name="description" content="Every file of BabyKalki v1.3.1 in full, with Copy and Download, and the checked zip (for Path A, build it yourself with Claude Code; the one-click Path B on Nimbuz needs no download).">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://bk.openkalki.org/files.html">
 <meta property="og:type" content="website">
@@ -281,7 +281,7 @@ figure.shot{margin:14px 0}figure.shot img{display:block;width:100%;height:auto;b
 /* v0.8 (R2-15): phones get one row of site bar and a one-line banner */
 @media(max-width:480px){.banner .blong{display:none}.banner{padding:6px 10px}
 .sitebar .wrap{flex-wrap:nowrap;overflow-x:auto;white-space:nowrap;gap:0 14px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
-.sitebar .wrap::-webkit-scrollbar{display:none}.sitebar .sb-name,.sitebar .sb-long{display:none}.sitebar .wrap{gap:0 13px}}
+.sitebar .wrap::-webkit-scrollbar{display:none}.sitebar .sb-name,.sitebar .sb-long,.sitebar a[href^="https://github.com"]{display:none}.sitebar .wrap{gap:0 13px}}
 /* v1.3: two paths — choose cards in the hero */
 .choose-h{margin:26px 0 10px;font-size:22px;line-height:1.25;border:0;padding:0}
 .pathcard{display:flex;flex-direction:column;gap:6px;border-color:var(--b3)}
@@ -303,8 +303,8 @@ html{scroll-padding-top:calc(var(--navh) + 12px)}
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<div class="sitebar"><div class="wrap"><span class="sb-name">BabyKalki</span><a href="/">Guide</a><a href="/files.html" aria-current="page">Files</a><a href="/encyclopedia/">Encyclopedia</a><a href="/status/"><span class="sb-long">Live </span>status</a><a href="/community/">Community</a></div></div>
-<div class="banner"><b>v1.3 — 22 Nov 2026</b> — every file in the zip, in full. These files are for Path A (build it yourself with Claude Code); Path B (one-click on Nimbuz) needs no download. v1.3 runs on Nimbuz and serves this site (since 20 Nov 2026; since v0.6 the kit can carry your own public website in <code>site/www/</code>); L0–L2 tested locally; L3 followed end to end on Nimbuz by an automated dry run; commits only in the Librarian round and approvals only by the founder — both enforced; the Telegram community desk runs live in <a href="https://t.me/babykalki" rel="noopener">t.me/babykalki</a>. Still to verify: schedules, real R2, L4 connectors.</div>
+<div class="sitebar"><div class="wrap"><span class="sb-name">BabyKalki</span><a href="/">Guide</a><a href="/files.html" aria-current="page">Files</a><a href="/encyclopedia/">Encyclopedia</a><a href="/status/"><span class="sb-long">Live </span>status</a><a href="/community/">Community</a><a href="https://github.com/babykalki/babykalki" rel="noopener">GitHub</a></div></div>
+<div class="banner"><b>v1.3.1 — 22 Nov 2026</b> — every file in the zip, in full. These files are for Path A (build it yourself with Claude Code); Path B (one-click on Nimbuz) needs no download. v1.3.1 runs on Nimbuz and serves this site (since 20 Nov 2026; since v0.6 the kit can carry your own public website in <code>site/www/</code>); L0–L2 tested locally; L3 followed end to end on Nimbuz by an automated dry run; commits only in the Librarian round and approvals only by the founder — both enforced; the Telegram community desk runs live in <a href="https://t.me/babykalki" rel="noopener">t.me/babykalki</a>. Still to verify: schedules, real R2, L4 connectors.</div>
 <nav class="top" aria-label="Site">
   <div class="wrap row1">
     <a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E4DCFF"/><stop offset=".55" stop-color="#8E7DFF"/><stop offset="1" stop-color="#4B3FD6"/></linearGradient></defs><path d="M16 27C7 25 3 18 4 11c6 2 11 8 12 16z" fill="#4B3FD6" opacity=".7"/><path d="M16 27c9-2 13-9 12-16-6 2-11 8-12 16z" fill="#4B3FD6" opacity=".7"/><path d="M16 27C10 24 9 14 16 5c7 9 6 19 0 22z" fill="url(#lg)"/><circle cx="16" cy="24.4" r="1.9" fill="#E8B339"/></svg> BabyKalki</a>
@@ -313,25 +313,27 @@ html{scroll-padding-top:calc(var(--navh) + 12px)}
 </nav>
 <main class="wrap" id="main" tabindex="-1">
 <header class="hero" id="top" style="padding-bottom:6px">
-  <div class="eyebrow">BabyKalki · v1.3</div>
+  <div class="eyebrow">BabyKalki · v1.3.1</div>
   <h1 style="font-size:clamp(28px,5vw,40px)">Every file, in full</h1>
   <p class="lead">You don't need to copy these by hand — the L0 mission downloads the zip and checks it. They are here so you (or a developer friend) can read every line before you run anything.</p>
   <div class="callout"><b>Which path are you on?</b> This zip is for <a href="index.html#levels">Path A — Build it yourself with Claude Code</a>: Claude Code checks it and deploys it to your Nimbuz application. <a href="index.html#oneclick">Path B — One-click on Nimbuz</a> needs <b>no download</b>: Nimbuz builds BabyKalki from its own catalogue image (kit v1.1 when we tested it on 22 Nov 2026), so these files are only for reading. <a href="index.html#paths">Which path should I pick?</a></div>
   <div class="card">
-    <div class="btns" style="margin:0 0 8px"><a class="btn" href="files/babykalki-files-v1.3.zip" download>Download babykalki-files-v1.3.zip</a></div>
+    <div class="btns" style="margin:0 0 8px"><a class="btn" href="files/babykalki-files-v1.3.1.zip" download>Download babykalki-files-v1.3.1.zip</a><a class="btn ghost" href="https://github.com/babykalki/babykalki" rel="noopener">Code on GitHub</a></div>
     <span class="small muted">SHA-256 of the zip:</span>
-    <code class="sha">13eadd4104268727e43d1c0c899c7aa7de0d03a252af3036e0c86a818f64898f</code>
-    <p class="small muted" style="margin:6px 0 0">macOS/Linux: <code>shasum -a 256 babykalki-files-v1.3.zip</code> · Windows PowerShell: <code>Get-FileHash babykalki-files-v1.3.zip</code> · files are at the top of the zip — <code>mkdir babykalki &amp;&amp; unzip babykalki-files-v1.3.zip -d babykalki</code>, then in that folder: <code>shasum -a 256 -c SHA256SUMS</code> (<a href="files/SHA256SUMS">SHA256SUMS</a>, <a href="files/babykalki-files-v1.3.zip.sha256">.sha256</a>).</p>
+    <code class="sha">a723c25a53591ba5074b230991d8851edebeac5a47541f3ce36c25598329e5fd</code>
+    <p class="small muted" style="margin:6px 0 0">macOS/Linux: <code>shasum -a 256 babykalki-files-v1.3.1.zip</code> · Windows PowerShell: <code>Get-FileHash babykalki-files-v1.3.1.zip</code> · files are at the top of the zip — <code>mkdir babykalki &amp;&amp; unzip babykalki-files-v1.3.1.zip -d babykalki</code>, then in that folder: <code>shasum -a 256 -c SHA256SUMS</code> (<a href="files/SHA256SUMS">SHA256SUMS</a>, <a href="files/babykalki-files-v1.3.1.zip.sha256">.sha256</a>).</p>
+    <p class="small" style="margin:10px 0 0"><b>Or use git:</b> the same files are public on GitHub — <code>git clone https://github.com/babykalki/babykalki</code>, then in that folder <code>shasum -a 256 -c SHA256SUMS</code>. Every version is a tagged release with this zip attached: <a href="https://github.com/babykalki/babykalki/releases" rel="noopener">github.com/babykalki/babykalki/releases</a>. The repo also holds this website in <code>website/</code>.</p>
   </div>
   <div class="callout"><b>Status.</b> 269 automated tests pass locally with stand-ins (Library, backup/restore, boot lease, diary, secret filter, status publisher, static server, approvals page, Librarian round, citizen presets, supervisor, private hostname, community desk with a fake Telegram and a fake model); the presets and the Librarian round were also run against a real dsh 0.2.2-rc.3 with a stand-in model. On 19 Nov 2026 an automated dry run followed the guide on Nimbuz with real dsh, a real Z.ai key and MinIO standing in for R2; what it found is fixed in v0.4. v0.6 and later serve this site from the founder's own BabyKalki. Code, configs and prompts: MIT.</div>
   <p class="small"><a class="btn tg" href="https://t.me/babykalki" rel="noopener">Questions? Join the community on Telegram</a></p>
 </header>
 <section id="all" style="border-top:0;padding-top:10px">
   <p class="small muted">Tap a file to open it. Each has Copy and Download.</p>
-  <!--email_off--><details class="file" id="f-README-md"><summary>README.md <span class="what">— what is in the zip, how to check it, where to start</span></summary><div class="inner"><div class="code"><div class="head"><span class="fn">README.md</span><span class="sp"></span><button class="copy" type="button">Copy</button><a class="dl" href="files/README.md" download>Download</a></div><pre><code># BabyKalki — files v1.3 (22 Nov 2026)
+  <!--email_off--><details class="file" id="f-README-md"><summary>README.md <span class="what">— what is in the zip, how to check it, where to start</span></summary><div class="inner"><div class="code"><div class="head"><span class="fn">README.md</span><span class="sp"></span><button class="copy" type="button">Copy</button><a class="dl" href="files/README.md" download>Download</a></div><pre><code># BabyKalki — files v1.3.1 (22 Nov 2026)
 
 You describe it. Claude Code builds and deploys it. Your citizens run it.
 Guide (start here): the BabyKalki page you downloaded this zip from. This folder holds every file the guide uses.
+Source: https://github.com/babykalki/babykalki
 
 **Status — be clear about what was tested:** the Library, backups/restore (with a local folder standing in for
 Cloudflare R2 and a dead endpoint for &quot;unreachable&quot;), the diary, the secret filter, the supervisor (with stand-ins for
@@ -377,8 +379,8 @@ version numbers.
 The files sit at the TOP of the zip (no folder around them — Nimbuz needs the Dockerfile there), so unzip into a new,
 empty folder:
 ```
-shasum -a 256 babykalki-files-v1.3.zip      # macOS  (Linux: sha256sum) — must equal the number on the guide page
-mkdir babykalki &amp;&amp; unzip babykalki-files-v1.3.zip -d babykalki &amp;&amp; cd babykalki
+shasum -a 256 babykalki-files-v1.3.1.zip      # macOS  (Linux: sha256sum) — must equal the number on the guide page
+mkdir babykalki &amp;&amp; unzip babykalki-files-v1.3.1.zip -d babykalki &amp;&amp; cd babykalki
 sha256sum -c SHA256SUMS                     # macOS: shasum -a 256 -c SHA256SUMS — every line must say OK
 bash tests/run_all.sh                       # optional: needs python3, node 22+, rclone
 ```
@@ -542,8 +544,8 @@ prompt&#x27;s RULES verbatim is blocked (quoting the guide is fine) — tested w
 
 ## Community — ask, share, contribute (v0.7)
 Questions about BabyKalki: the Telegram group **https://t.me/babykalki** (QR code on the guide page and at `/community/`).
-Its desk bot, @babykalki_bot, answers in plain words from the guide (general tips marked as such); humans answer the rest. There is no public code repository yet:
-send fixes to an admin in the group as a zip of the changed files plus a note (what, why, how you tested it —
+Its desk bot, @babykalki_bot, answers in plain words from the guide (general tips marked as such); humans answer the rest. The code is on GitHub (link at the top):
+open an issue or a pull request there, or send fixes to an admin in the group as a zip of the changed files plus a note (what, why, how you tested it —
 `tests/run_all.sh`); accepted fixes are credited in the guide&#x27;s change log. Licence: code MIT, guide text CC BY 4.0, data CC0 —
 please keep &quot;Based on BabyKalki by Robin Dey — https://bk.openkalki.org/&quot; in anything you publish from it.
 
@@ -613,16 +615,16 @@ SOFTWARE.
    LadybugDB, the MCP SDK, GitHub&#x27;s MCP server, Claude Code, Node.js, Debian, …) keeps its own licence and terms.
    The names &quot;BabyKalki&quot; and &quot;OpenKalki&quot; are project names and are not licensed for naming other products.
 </code></pre></div></div></details>
-<details class="file" id="f-CLAUDE-md"><summary>CLAUDE.md <span class="what">— standing rules for Claude Code on your laptop</span></summary><div class="inner"><div class="code"><div class="head"><span class="fn">CLAUDE.md</span><span class="sp"></span><button class="copy" type="button">Copy</button><a class="dl" href="files/CLAUDE.md" download>Download</a></div><pre><code># CLAUDE.md — standing rules for building BabyKalki (v1.3; rules unchanged since v0.5 unless marked)
-# Put this file in the root of your BabyKalki folder on your laptop (it is in babykalki-files-v1.3.zip — the zip named on the guide page).
+<details class="file" id="f-CLAUDE-md"><summary>CLAUDE.md <span class="what">— standing rules for Claude Code on your laptop</span></summary><div class="inner"><div class="code"><div class="head"><span class="fn">CLAUDE.md</span><span class="sp"></span><button class="copy" type="button">Copy</button><a class="dl" href="files/CLAUDE.md" download>Download</a></div><pre><code># CLAUDE.md — standing rules for building BabyKalki (v1.3.1; rules unchanged since v0.5 unless marked)
+# Put this file in the root of your BabyKalki folder on your laptop (it is in babykalki-files-v1.3.1.zip — the zip named on the guide page).
 # Claude Code reads it at the start of every session.
 
 ## Who you are working for
 - You are building and looking after BabyKalki for ONE founder: me.
 - BabyKalki = six AI citizens running in one container on Nimbuz, reached through Cloudflare.
 - The guide this came from is the source of truth. If this file and the guide disagree, ask me.
-- The files come from the zip named on the guide page (babykalki-files-v1.3.zip for this version). Before using them, check its SHA-256 against the number on the guide
-  page (`shasum -a 256 babykalki-files-v1.3.zip` on macOS, `sha256sum` on Linux), unzip it into an EMPTY folder (the
+- The files come from the zip named on the guide page (babykalki-files-v1.3.1.zip for this version). Before using them, check its SHA-256 against the number on the guide
+  page (`shasum -a 256 babykalki-files-v1.3.1.zip` on macOS, `sha256sum` on Linux), unzip it into an EMPTY folder (the
   files sit at the top of the zip, with no folder around them) and run `sha256sum -c SHA256SUMS` in that folder. Do not retype or &quot;improve&quot; the files from memory; change them only when I ask.
 
 ## The seven rules (the BabyKalki rulebook)
@@ -733,7 +735,7 @@ Ask me first, and wait for a clear &quot;yes&quot;, before:
 - Never put a public route in front of anything except www.&lt;domain&gt; (status page) and, if I add WhatsApp,
   hooks.&lt;domain&gt; (webhook only).
 </code></pre></div></div></details>
-<details class="file" id="f-env-example"><summary>.env.example <span class="what">— names of every setting and secret, by level — no values (saved as .env.example in the zip)</span></summary><div class="inner"><div class="code"><div class="head"><span class="fn">.env.example</span><span class="sp"></span><button class="copy" type="button">Copy</button><a class="dl" href="files/env.example" download>Download</a></div><pre><code># .env.example — NAMES ONLY (v1.3). Never put real values in this file or in git.
+<details class="file" id="f-env-example"><summary>.env.example <span class="what">— names of every setting and secret, by level — no values (saved as .env.example in the zip)</span></summary><div class="inner"><div class="code"><div class="head"><span class="fn">.env.example</span><span class="sp"></span><button class="copy" type="button">Copy</button><a class="dl" href="files/env.example" download>Download</a></div><pre><code># .env.example — NAMES ONLY (v1.3.1). Never put real values in this file or in git.
 # On Nimbuz: put the SECRET ones in Application &gt; Secrets, the rest in Environment Variables.
 # Nimbuz shows Secrets back in plain text to anyone with your Nimbuz login (API, checked 18 Nov 2026): that login is
 # the master key — 2-factor on, never give it to a citizen. Size: medium.r (1 vCPU / 4 GB) at least; small.m throttles.
@@ -1067,7 +1069,7 @@ INFRA_SECRET_RE = re.compile(r&quot;^(TUNNEL_TOKEN|RCLONE_CONFIG_.*|LIBRARY_ADMI
 # dsh&#x27;s boot code, Oct 2026; not re-checked on rc.3, harmless if ignored). (v0.5 draft also set DSH_PRODUCT_ANALYTICS_OTLP_URL:
 # it only feeds desktop-only rows, now disabled in cordis.patch.yml — dropped.)
 TELEMETRY_OFF = {&quot;DSH_TELEMETRY_MODE&quot;: &quot;DISABLED&quot;, &quot;DSH_TELEMETRY_OTLP_URL&quot;: &quot;http://127.0.0.1:9/&quot;, &quot;DSH_TELEMETRY_DISABLED&quot;: &quot;1&quot;}
-VERSION = &quot;v1.3&quot;
+VERSION = &quot;v1.3.1&quot;
 LIBRARIAN_PROMPT = (
     f&quot;Librarian round (BabyKalki {VERSION}). You are the Librarian. Read /data/citizens/librarian/AGENTS.md and &quot;
     &quot;AGENTS.local.md (if it exists) first. Then, with your library-librarian tools ONLY: list_proposals; for each pending proposal check its instrument and &quot;
@@ -3020,7 +3022,7 @@ text and nothing a citizen writes. It runs as the infra user and is the only wri
 Tested: tests/test_static_status.py.
 &quot;&quot;&quot;
 import datetime as dt, html, json, os, re, sys, tempfile, urllib.request
-VERSION = &quot;v1.3&quot;   # must equal site-src/build.py VERSION (build refuses otherwise)
+VERSION = &quot;v1.3.1&quot;   # must equal site-src/build.py VERSION (build refuses otherwise)
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 # v0.8 (R1-42): a fixed icon written next to the page (allowed by the page&#x27;s img-src &#x27;self&#x27;; nothing a citizen writes)
@@ -3034,7 +3036,7 @@ ENUMS = {
     &quot;backup_state&quot;: {&quot;OK&quot;, &quot;UNREACHABLE&quot;, &quot;INCONSISTENT&quot;, &quot;RESTORE_FAILED&quot;, &quot;RESTORED_WITH_WARNINGS&quot;, &quot;PUSH_FAILED&quot;,
                      &quot;NOT_RESTORED&quot;, &quot;UNKNOWN&quot;, &quot;LEASE_BUSY&quot;, &quot;LEASE_LOST&quot;, &quot;NO_LEASE&quot;},
     &quot;restore_test&quot;: {&quot;PASS&quot;, &quot;FAIL&quot;, &quot;NOT_RUN&quot;},
-    &quot;version&quot;: {&quot;v0.3&quot;, &quot;v0.4&quot;, &quot;v0.5&quot;, &quot;v0.6&quot;, &quot;v0.7&quot;, &quot;v0.8&quot;, &quot;v0.9&quot;, &quot;v1.0&quot;, &quot;v1.1&quot;, &quot;v1.2&quot;, &quot;v1.3&quot;},
+    &quot;version&quot;: {&quot;v0.3&quot;, &quot;v0.4&quot;, &quot;v0.5&quot;, &quot;v0.6&quot;, &quot;v0.7&quot;, &quot;v0.8&quot;, &quot;v0.9&quot;, &quot;v1.0&quot;, &quot;v1.1&quot;, &quot;v1.2&quot;, &quot;v1.3&quot;, &quot;v1.3.1&quot;},
     &quot;community_state&quot;: {&quot;OFF&quot;, &quot;STARTING&quot;, &quot;ON&quot;, &quot;ERROR&quot;},
     &quot;telemetry&quot;: {&quot;OFF&quot;, &quot;ALLOWED&quot;},
     &quot;librarian_round&quot;: {&quot;IDLE&quot;, &quot;RUNNING&quot;, &quot;OK&quot;, &quot;SKIPPED&quot;, &quot;FAILED&quot;, &quot;TIMEOUT&quot;, &quot;ERROR&quot;},
@@ -4617,7 +4619,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 from bk_secrets import Scanner  # noqa: E402
 
-VERSION = &quot;v1.3&quot;
+VERSION = &quot;v1.3.1&quot;
 STOP_WORDS = set(&quot;a an and are as at be been but by can could did do does for from had has have how i if in into is it its &quot;
                  &quot;me my of on or our ours should so than that the their them there these they this those to was we were what &quot;
                  &quot;when where which who whom why will with would you your about any all please hi hello hey thanks thank &quot;
@@ -5929,7 +5931,7 @@ class Desk:
 if __name__ == &quot;__main__&quot;:
     sys.exit(Desk().run())
 </code></pre></div></div></details>
-<details class="file" id="f-community-kb-md"><summary>community-kb.md <span class="what">— v0.5: the community desk&#x27;s public knowledge (generated from this page; add yours in community-kb.founder.md)</span></summary><div class="inner"><div class="code"><div class="head"><span class="fn">community-kb.md</span><span class="sp"></span><button class="copy" type="button">Copy</button><a class="dl" href="files/community-kb.md" download>Download</a></div><pre><code># BabyKalki — community knowledge base (v1.3)
+<details class="file" id="f-community-kb-md"><summary>community-kb.md <span class="what">— v0.5: the community desk&#x27;s public knowledge (generated from this page; add yours in community-kb.founder.md)</span></summary><div class="inner"><div class="code"><div class="head"><span class="fn">community-kb.md</span><span class="sp"></span><button class="copy" type="button">Copy</button><a class="dl" href="files/community-kb.md" download>Download</a></div><pre><code># BabyKalki — community knowledge base (v1.3.1)
 &lt;!-- Generated by site-src/make_kb.py from the public guide page. Do not edit by hand: put your own sections in
      community-kb.founder.md (same &quot;## Title&quot; replaces a section here). Each section: &quot;## Title {#anchor}&quot;. --&gt;
 
@@ -6112,10 +6114,10 @@ Two Nimbuz facts you must know (checked live, 18 Nov 2026). 1 · Storage is wipe
 
 ## L4 — Connected: your phone, inbox, code and calendar {#l4}
 preview Goal: the Warden reaches you on Telegram; the citizens work inside GitHub, Gmail, Calendar and Drive with the narrowest permissions; every connection is in the Register; the 08:00 briefing runs. The briefing and triage need dsh schedules: the Warden has a schedule tool in the web-UI session (seen live, 19 Nov 2026; the headless profile has none); the first scheduled delivery is to verify.
-Telegram first. Telegram is set up here, at L4. WhatsApp needs Meta business verification, which usually takes longer than a weekend — start with Telegram and add WhatsApp later. The chat bridge (Telegram or WhatsApp ↔ the Warden) is not in the v1.3 files: Claude Code writes it with you at this level to verify. (The community desk (since v0.5) is a different bot: public, for your group, with no line to the Warden.)
+Telegram first. Telegram is set up here, at L4. WhatsApp needs Meta business verification, which usually takes longer than a weekend — start with Telegram and add WhatsApp later. The chat bridge (Telegram or WhatsApp ↔ the Warden) is not in the v1.3.1 files: Claude Code writes it with you at this level to verify. (The community desk (since v0.5) is a different bot: public, for your group, with no line to the Warden.)
 ✅ Done when: (1) the 08:00 IST briefing arrives on Telegram; (2) a reply you asked for is waiting in Gmail Drafts (not sent); (3) a test PR exists, and a push to main is refused — or, on a private repo without a paid plan, the agents work in a separate repo (see below) to verify; (4) /connections in a citizen&#x27;s session (the Steward&#x27;s list_connections) shows every key with owner, scope, cap, expiry and how to revoke it (green / amber / red).
 Under the hood: bridges, scopes and GitHub
-Chat bridge: dsh has web, SDK, ACP and headless surfaces but no Telegram/WhatsApp surface, so the bridge is a small extra process that forwards your messages to the Warden&#x27;s session. Telegram uses long polling (no public route). WhatsApp&#x27;s Cloud API calls a webhook, which needs the public hooks.yourdomain route: it bypasses Access, so the bridge must check every request&#x27;s Meta signature. Not in the v1.3 files; to verify on dsh 0.2.2-rc.3&#x27;s SDK.
+Chat bridge: dsh has web, SDK, ACP and headless surfaces but no Telegram/WhatsApp surface, so the bridge is a small extra process that forwards your messages to the Warden&#x27;s session. Telegram uses long polling (no public route). WhatsApp&#x27;s Cloud API calls a webhook, which needs the public hooks.yourdomain route: it bypasses Access, so the bridge must check every request&#x27;s Meta signature. Not in the v1.3.1 files; to verify on dsh 0.2.2-rc.3&#x27;s SDK.
 Secrets reach tools explicitly: dsh strips every environment variable whose name contains KEY, TOKEN, SECRET or PASSWORD from child processes. A connector that needs one gets it through its own env: block in cordis.patch.yml — so each tool sees only its own key.
 GitHub: the official GitHub MCP server (github/github-mcp-server v2.2.0). A token that can push branches needs Contents: write. Branch protection and rulesets on private repos are not available on GitHub Free (GitHub Docs, &quot;About protected branches&quot;, checked 17 Nov 2026: Free covers public repos only; private repos need Pro, Team or Enterprise). The real lock is that the token can reach only one repo; main is locked only if protection is enforced. to verify in the dry run that a push to main is refused.
 Gmail: use the Gmail API scopes for reading and composing drafts; never the full-mail scope. You press Send. to verify: exact connector and scope names.
@@ -6174,7 +6176,7 @@ Limits — know these before you rely on Path B
 2 · No status page. You cannot see RUNNING / STOPPED or the backup age at a glance (the panel&#x27;s &quot;Status&quot; link is broken). Ask the Steward (/brief) instead.
 3 · The password is the only outer lock. There is no email code as with Cloudflare Access, and no lockout after wrong tries. Use a long random password, and don&#x27;t share the address.
 4 · Not offered yet: your own domain, a public website, the Telegram community desk, and fields for connector keys.
-5 · Updates are Nimbuz&#x27;s. The tool ran kit v1.1 on 22 Nov 2026 (this guide is v1.3); you cannot pick a version, and how existing installs get updated is to verify.
+5 · Updates are Nimbuz&#x27;s. The tool ran kit v1.1 on 22 Nov 2026 (this guide is v1.3.1); you cannot pick a version, and how existing installs get updated is to verify.
 6 · No logs view for tools in Nimbuz; ask a citizen to read /data/log/.
 Resize, stop, delete
 Change size: Tools → ⋮ → Edit → change the instance type → Update. About 35 s offline; your data and login stay.
@@ -6406,7 +6408,7 @@ Open t.me/babykalki and read the pinned welcome message and the rules (/rules); 
 2 · Share your build
 Say which path you took (A or B). Post your public status page (https://www.yourdomain/status/, or your site — Path A) and your citizens&#x27; names from your naming ceremony, with what worked, what broke and what it cost. Never post keys, passwords, your private dashboard&#x27;s address (on Path B your Nimbuz address is the dashboard), /bk-login links, or screenshots that show any of them. If you posted a key by mistake: delete the message and revoke the key.
 3 · Report a mistake or send a fix
-Found something wrong in the guide or the files? Reply to the message with /report, or post &quot;Erratum:&quot; with the section link. There is no public code repository yet. For a code fix, send an admin a zip of the changed files with a short note: what, why, and how you tested it (tests/run_all.sh). Accepted fixes are credited by name or handle in What changed, unless you ask not to be named.
+Found something wrong in the guide or the files? Reply to the message with /report, or post &quot;Erratum:&quot; with the section link. The code is on GitHub: github.com/babykalki/babykalki — open an issue or a pull request there, or send an admin a zip of the changed files with a short note: what, why, and how you tested it (tests/run_all.sh). Accepted fixes are credited by name or handle in What changed, unless you ask not to be named.
 4 · Help the next founder
 Answer what you know and link the guide section. When the desk says &quot;I&#x27;ve asked a human&quot;, that human can be you. Questions the guide can&#x27;t answer become new guide sections, so the desk gets better for everyone.
 5 · Fork, remix, teach
@@ -6548,21 +6550,24 @@ Yes. dsh speaks the OpenAI and Anthropic protocols and supports several provider
 It is a personal subscription for one person&#x27;s own work in supported tools: no bots that serve other people, no account sharing, no resale. Robin asked Z.ai and was told that dsh counts as a supported tool, like Claude Code (17 Nov 2026). Z.ai&#x27;s public list may lag — check the current terms yourself. It covers your work. A bot that answers your customers or a public group needs a separate pay-per-use key (or no key: the community desk can answer from the guide alone).
 
 ## FAQ: WhatsApp or Telegram? {#faq}
-Telegram is the easiest start: free, a bot in five minutes, no public route needed. WhatsApp is where Indian founders live, but it must be the official WhatsApp Business Platform (Cloud API): Meta business verification usually takes longer than a weekend, it needs a public webhook route (hooks.yourdomain), and Meta charges small per-message fees for messages your business starts. Never automate a personal WhatsApp number with unofficial tools — numbers get banned. The Warden&#x27;s private chat bridge is not in the v1.3 files; the bot for your public group is — see L6, the community desk.
+Telegram is the easiest start: free, a bot in five minutes, no public route needed. WhatsApp is where Indian founders live, but it must be the official WhatsApp Business Platform (Cloud API): Meta business verification usually takes longer than a weekend, it needs a public webhook route (hooks.yourdomain), and Meta charges small per-message fees for messages your business starts. Never automate a personal WhatsApp number with unofficial tools — numbers get banned. The Warden&#x27;s private chat bridge is not in the v1.3.1 files; the bot for your public group is — see L6, the community desk.
 
 ## FAQ: Why Nimbuz? {#faq}
 It is a low-cost Indian platform with per-minute billing and UPI payments, and its public catalogue was among the cheapest we found for a small always-on container. We ran BabyKalki on it live on 18 Nov 2026: it works, with the caveats in L3 (storage wiped on restart, overlapping restarts, the login is the master key). Since 21 Nov 2026 it also offers BabyKalki as a one-click tool (Path B). It is a young platform. The container is standard Docker, so you can move it to any host that runs Docker — change the deploy step, keep everything else. You are not locked in.
 
-## FAQ: Why a zip and not a git repository? {#faq}
-(Path A.) One versioned file with a published SHA-256 is simple to check and impossible to half-copy. Claude Code downloads it, checks the hash and every file in SHA256SUMS, and nobody retypes anything. Your own project then lives in your own repo.
+## FAQ: Is the code on GitHub? {#faq}
+Yes: github.com/babykalki/babykalki. The top of the repo is exactly the kit zip unzipped (so shasum -a 256 -c SHA256SUMS passes), website/ is this site, and each version is a tagged release with the zip and its SHA-256 attached. Clone: git clone https://github.com/babykalki/babykalki. Issues and pull requests are welcome; the Telegram group stays the place for questions. (Path B on Nimbuz needs neither the zip nor the repo.)
+
+## FAQ: Zip or git repository? {#faq}
+(Path A.) Either — they hold the same files. The L0 mission uses the zip: one versioned file with a published SHA-256 is simple to check and impossible to half-copy; Claude Code downloads it, checks the hash and every file in SHA256SUMS, and nobody retypes anything. If you prefer git, clone the repo and run the same SHA256SUMS check. Your own project then lives in your own repo.
 
 ## FAQ: Is this OpenKalki? {#faq}
 No — it&#x27;s its small sibling. OpenKalki is a full society of AI agents with its own services and infrastructure. BabyKalki borrows its ideas (citizens, civic offices, a library that never erases, human approval) and connects to services you already use instead.
 
 ## Licence, credits and contact {#licence}
-Code, configs and prompts: MIT. Guide text and diagrams: CC BY 4.0. Data: CC0. © 2026 Robin Dey. Cite as: Dey, R. (2026), BabyKalki v1.3, https://bk.openkalki.org/. &quot;BabyKalki&quot;/&quot;OpenKalki&quot; are project names. Third-party tools are used under their own terms.
+Code, configs and prompts: MIT. Guide text and diagrams: CC BY 4.0. Data: CC0. © 2026 Robin Dey. Cite as: Dey, R. (2026), BabyKalki v1.3.1, https://bk.openkalki.org/. Source: github.com/babykalki/babykalki. &quot;BabyKalki&quot;/&quot;OpenKalki&quot; are project names. Third-party tools are used under their own terms.
 Questions? Join the community: t.me/babykalki — @babykalki_bot answers from the guide; humans answer the rest. Show the QR code · How to take part
-BabyKalki guide · v1.3 · 22 Nov 2026 · to verify = not yet checked. Facts, versions and prices were checked against public sources on 17 Nov 2026; L0–L2 files are tested locally; Path A&#x27;s L3 was followed end to end on Nimbuz by an automated dry run on 19 Nov 2026 (thinking citizens, test domain, MinIO instead of R2); Path B (Nimbuz&#x27;s one-click tool) was tested end to end on 22 Nov 2026; L4–L5 stay a preview; the L6 community desk (v0.5) runs live in the BabyKalki Telegram group since 20 Nov 2026, its full checklist still to verify. Third-party names (Claude Code, Z.ai/GLM, DeepSeek Harness, Nimbuz, LadybugDB, Cloudflare, Kling, Runway, WhatsApp, Telegram, GitHub, Google) belong to their owners; no endorsement implied.
+BabyKalki guide · v1.3.1 · 22 Nov 2026 · to verify = not yet checked. Facts, versions and prices were checked against public sources on 17 Nov 2026; L0–L2 files are tested locally; Path A&#x27;s L3 was followed end to end on Nimbuz by an automated dry run on 19 Nov 2026 (thinking citizens, test domain, MinIO instead of R2); Path B (Nimbuz&#x27;s one-click tool) was tested end to end on 22 Nov 2026; L4–L5 stay a preview; the L6 community desk (v0.5) runs live in the BabyKalki Telegram group since 20 Nov 2026, its full checklist still to verify. Third-party names (Claude Code, Z.ai/GLM, DeepSeek Harness, Nimbuz, LadybugDB, Cloudflare, Kling, Runway, WhatsApp, Telegram, GitHub, Google) belong to their owners; no endorsement implied.
 ↑
 </code></pre></div></div></details>
 <details class="file" id="f-community-kb-founder-example-md"><summary>community-kb.founder.example.md <span class="what">— v0.8: template for your own group&#x27;s desk knowledge (About us / Product / Pricing / Start / Rules)</span></summary><div class="inner"><div class="code"><div class="head"><span class="fn">community-kb.founder.example.md</span><span class="sp"></span><button class="copy" type="button">Copy</button><a class="dl" href="files/community-kb.founder.example.md" download>Download</a></div><pre><code>&lt;!-- community-kb.founder.example.md — a starting point for YOUR group&#x27;s own desk knowledge (BabyKalki kit, v0.8).
@@ -11979,8 +11984,8 @@ os.execv(e[&quot;REAL_RCLONE&quot;], [e[&quot;REAL_RCLONE&quot;], *args])
 </main>
 <footer id="licence">
   <div class="wrap">
-    <div class="lic">Code, configs and prompts: MIT. Guide text and diagrams: CC BY 4.0. Data: CC0. © 2026 Robin Dey. Cite as: Dey, R. (2026), BabyKalki v1.3, https://bk.openkalki.org/. "BabyKalki"/"OpenKalki" are project names. Third-party tools are used under their own terms.</div>
-    <p><a href="index.html">Back to the guide</a> · <a href="community/">Community on Telegram (QR code)</a> · <a href="changes.html">Change history</a></p>
+    <div class="lic">Code, configs and prompts: MIT. Guide text and diagrams: CC BY 4.0. Data: CC0. © 2026 Robin Dey. Cite as: Dey, R. (2026), BabyKalki v1.3.1, https://bk.openkalki.org/. "BabyKalki"/"OpenKalki" are project names. Third-party tools are used under their own terms.</div>
+    <p><a href="index.html">Back to the guide</a> · <a href="community/">Community on Telegram (QR code)</a> · <a href="changes.html">Change history</a> · <a href="https://github.com/babykalki/babykalki" rel="noopener">Source on GitHub</a></p>
   </div>
 </footer>
 <a class="top-link" href="#top" aria-label="Back to top">↑</a>

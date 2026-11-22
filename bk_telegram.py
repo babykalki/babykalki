@@ -47,7 +47,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 from bk_secrets import Scanner  # noqa: E402
 
-VERSION = "v1.3"
+VERSION = "v1.3.1"
 STOP_WORDS = set("a an and are as at be been but by can could did do does for from had has have how i if in into is it its "
                  "me my of on or our ours should so than that the their them there these they this those to was we were what "
                  "when where which who whom why will with would you your about any all please hi hello hey thanks thank "

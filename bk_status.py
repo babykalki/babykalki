@@ -8,7 +8,7 @@ text and nothing a citizen writes. It runs as the infra user and is the only wri
 Tested: tests/test_static_status.py.
 """
 import datetime as dt, html, json, os, re, sys, tempfile, urllib.request
-VERSION = "v1.3"   # must equal site-src/build.py VERSION (build refuses otherwise)
+VERSION = "v1.3.1"   # must equal site-src/build.py VERSION (build refuses otherwise)
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 # v0.8 (R1-42): a fixed icon written next to the page (allowed by the page's img-src 'self'; nothing a citizen writes)
@@ -22,7 +22,7 @@ ENUMS = {
     "backup_state": {"OK", "UNREACHABLE", "INCONSISTENT", "RESTORE_FAILED", "RESTORED_WITH_WARNINGS", "PUSH_FAILED",
                      "NOT_RESTORED", "UNKNOWN", "LEASE_BUSY", "LEASE_LOST", "NO_LEASE"},
     "restore_test": {"PASS", "FAIL", "NOT_RUN"},
-    "version": {"v0.3", "v0.4", "v0.5", "v0.6", "v0.7", "v0.8", "v0.9", "v1.0", "v1.1", "v1.2", "v1.3"},
+    "version": {"v0.3", "v0.4", "v0.5", "v0.6", "v0.7", "v0.8", "v0.9", "v1.0", "v1.1", "v1.2", "v1.3", "v1.3.1"},
     "community_state": {"OFF", "STARTING", "ON", "ERROR"},
     "telemetry": {"OFF", "ALLOWED"},
     "librarian_round": {"IDLE", "RUNNING", "OK", "SKIPPED", "FAILED", "TIMEOUT", "ERROR"},

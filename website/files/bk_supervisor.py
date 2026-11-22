@@ -91,7 +91,7 @@ INFRA_SECRET_RE = re.compile(r"^(TUNNEL_TOKEN|RCLONE_CONFIG_.*|LIBRARY_ADMIN_TOK
 # dsh's boot code, Oct 2026; not re-checked on rc.3, harmless if ignored). (v0.5 draft also set DSH_PRODUCT_ANALYTICS_OTLP_URL:
 # it only feeds desktop-only rows, now disabled in cordis.patch.yml — dropped.)
 TELEMETRY_OFF = {"DSH_TELEMETRY_MODE": "DISABLED", "DSH_TELEMETRY_OTLP_URL": "http://127.0.0.1:9/", "DSH_TELEMETRY_DISABLED": "1"}
-VERSION = "v1.3"
+VERSION = "v1.3.1"
 LIBRARIAN_PROMPT = (
     f"Librarian round (BabyKalki {VERSION}). You are the Librarian. Read /data/citizens/librarian/AGENTS.md and "
     "AGENTS.local.md (if it exists) first. Then, with your library-librarian tools ONLY: list_proposals; for each pending proposal check its instrument and "

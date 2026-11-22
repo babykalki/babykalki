@@ -1,7 +1,8 @@
-# BabyKalki — files v1.3 (22 Nov 2026)
+# BabyKalki — files v1.3.1 (22 Nov 2026)
 
 You describe it. Claude Code builds and deploys it. Your citizens run it.
 Guide (start here): the BabyKalki page you downloaded this zip from. This folder holds every file the guide uses.
+Source: https://github.com/babykalki/babykalki
 
 **Status — be clear about what was tested:** the Library, backups/restore (with a local folder standing in for
 Cloudflare R2 and a dead endpoint for "unreachable"), the diary, the secret filter, the supervisor (with stand-ins for
@@ -47,8 +48,8 @@ version numbers.
 The files sit at the TOP of the zip (no folder around them — Nimbuz needs the Dockerfile there), so unzip into a new,
 empty folder:
 ```
-shasum -a 256 babykalki-files-v1.3.zip      # macOS  (Linux: sha256sum) — must equal the number on the guide page
-mkdir babykalki && unzip babykalki-files-v1.3.zip -d babykalki && cd babykalki
+shasum -a 256 babykalki-files-v1.3.1.zip      # macOS  (Linux: sha256sum) — must equal the number on the guide page
+mkdir babykalki && unzip babykalki-files-v1.3.1.zip -d babykalki && cd babykalki
 sha256sum -c SHA256SUMS                     # macOS: shasum -a 256 -c SHA256SUMS — every line must say OK
 bash tests/run_all.sh                       # optional: needs python3, node 22+, rclone
 ```
@@ -212,8 +213,8 @@ prompt's RULES verbatim is blocked (quoting the guide is fine) — tested with d
 
 ## Community — ask, share, contribute (v0.7)
 Questions about BabyKalki: the Telegram group **https://t.me/babykalki** (QR code on the guide page and at `/community/`).
-Its desk bot, @babykalki_bot, answers in plain words from the guide (general tips marked as such); humans answer the rest. There is no public code repository yet:
-send fixes to an admin in the group as a zip of the changed files plus a note (what, why, how you tested it —
+Its desk bot, @babykalki_bot, answers in plain words from the guide (general tips marked as such); humans answer the rest. The code is on GitHub (link at the top):
+open an issue or a pull request there, or send fixes to an admin in the group as a zip of the changed files plus a note (what, why, how you tested it —
 `tests/run_all.sh`); accepted fixes are credited in the guide's change log. Licence: code MIT, guide text CC BY 4.0, data CC0 —
 please keep "Based on BabyKalki by Robin Dey — https://bk.openkalki.org/" in anything you publish from it.
 

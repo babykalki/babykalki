@@ -1,4 +1,4 @@
-/* BabyKalki Encyclopedia — the six founding citizens (+ you, the sponsor). Source: guide v1.3 §07. Names are roles until YOUR naming ceremony. */
+/* BabyKalki Encyclopedia — the six founding citizens (+ you, the sponsor). Source: guide v1.3.1 §07. Names are roles until YOUR naming ceremony. */
 window.OK = window.OK || {};
 OK.citizens = [
   { no: 'BK-1', emoji: '🛎️', name: 'Warden', title: 'Front desk', inst: 'Front desk', status: 'founding', model: 'GLM-5.3', tools: 'chat · delegate · schedule',
