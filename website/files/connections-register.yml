@@ -1,0 +1,70 @@
+# Connections Register — human mirror (v0.5: + the community desk's two keys; otherwise unchanged since v0.2). Facts ABOUT each connection; never the secret itself.
+# The Steward keeps the live register in the Library (`register_connection` / `update_connection` / `list_connections`);
+# this file is the starting list, copied to /data/registers/ on first start and backed up with every snapshot.
+# Rule: "If you can't say what a key may do, who uses it and how to kill it, don't connect it." (the Library refuses it)
+- id: CONN-zai
+  service: Z.ai GLM Coding Plan
+  may_do: model calls for laptop Claude Code + the six citizens (personal use only)
+  used_by: [all]
+  secret_name: ZAI_API_KEY              # NAME only
+  cost_model: flat monthly subscription; 5-hour + weekly credit limits
+  monthly_cap: plan price
+  expires: on renewal date
+  revoke_how: z.ai > API keys > delete key (this is also the HARD STOP); cancel ≥3 days before renewal
+  status: green
+- id: CONN-cloudflare-tunnel
+  service: Cloudflare Tunnel
+  may_do: carry traffic for agent.<domain> (+ /bk-login) and www.<domain> to the container
+  used_by: [infrastructure]
+  secret_name: TUNNEL_TOKEN
+  cost_model: free
+  revoke_how: Zero Trust > Networks > Tunnels > delete tunnel (or rotate token)
+  status: green
+- id: CONN-r2
+  service: Cloudflare R2 (backups)
+  may_do: read and write objects in ONE bucket
+  used_by: [infrastructure]
+  secret_name: RCLONE_CONFIG_R2_SECRET_ACCESS_KEY
+  cost_model: free up to 10 GB-month
+  revoke_how: R2 > Manage API tokens > delete
+  status: green
+- id: CONN-github
+  service: GitHub (one repo)
+  may_do: push branches, open issues and pull requests in ONE repo; NO admin. main is locked only if branch
+    protection is enforced (public repo, or a paid plan for private repos) with "do not allow bypassing"
+  used_by: [builder, reviewer, librarian]
+  secret_name: BK_GITHUB_TOKEN
+  cost_model: free
+  expires: fine-grained tokens expire — set 90 days
+  revoke_how: github.com > Settings > Developer settings > Fine-grained tokens > Revoke
+  status: amber   # added at L4
+- id: CONN-telegram-community
+  service: Telegram bot (community desk, v0.5)
+  may_do: read and post in the groups it was added to; delete messages and mute members there if made admin
+    (Delete messages + Ban users only)
+  used_by: [community-desk]             # bk_telegram.py as user bkcomm — not a citizen
+  secret_name: BK_TELEGRAM_BOT_TOKEN
+  cost_model: free
+  revoke_how: Telegram > @BotFather > /revoke (or remove BK_TELEGRAM_BOT_TOKEN and restart = desk OFF)
+  status: amber   # added at L6 (optional)
+- id: CONN-community-llm
+  service: pay-per-use model API for the community desk (default Z.ai, glm-5.3-flash) — recommended over the Coding Plan
+    (prototype opt-in BK_COMMUNITY_USE_CODING_PLAN=1 reuses ZAI_API_KEY instead: then note it on CONN-zai)
+  may_do: short answers to public questions, grounded in the public guide
+  used_by: [community-desk]
+  secret_name: BK_COMMUNITY_LLM_KEY
+  cost_model: per token; capped by BK_COMMUNITY_DAILY_CALLS and the provider's own spend limit
+  monthly_cap: set a spend limit at the provider (e.g. 5 USD)
+  revoke_how: provider console > API keys > delete (desk falls back to retrieval-only answers)
+  status: amber   # optional; add only if you want written answers
+# Template for a new one:
+# - id: CONN-<service>
+#   service:
+#   may_do:            # the narrowest scope that works
+#   used_by: []
+#   secret_name:       # Nimbuz Secret NAME
+#   cost_model:
+#   monthly_cap:
+#   expires:
+#   revoke_how:        # the kill switch, in one line
+#   status: green|amber|red

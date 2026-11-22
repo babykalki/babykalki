@@ -1,0 +1,44 @@
+BabyKalki — licences (v1.1, 20 Nov 2026; terms unchanged since v0.2)
+
+Code, configs and prompts: MIT. Guide text and diagrams: CC BY 4.0. Data: CC0.
+© 2026 Robin Dey. Cite as: Dey, R. (2026), BabyKalki, https://bk.openkalki.org/ (cite the version you used).
+"BabyKalki"/"OpenKalki" are project names. Third-party tools are used under their own terms.
+
+-------------------------------------------------------------------------------
+1. Code, configuration files and prompts (every file in this folder unless noted below) — MIT License
+
+MIT License
+
+Copyright (c) 2026 Robin Dey
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+-------------------------------------------------------------------------------
+2. Guide text and diagrams (the BabyKalki guide web page, README.md prose, cloudflare-setup.md prose, the map)
+   — Creative Commons Attribution 4.0 International (CC BY 4.0)
+   https://creativecommons.org/licenses/by/4.0/legalcode
+   You may share and adapt them for any purpose, if you give appropriate credit (see "Cite as" above),
+   link to the licence, and indicate if changes were made.
+
+3. Data (example data, schemas' sample content, published counts) — CC0 1.0 Universal (public domain dedication)
+   https://creativecommons.org/publicdomain/zero/1.0/legalcode
+
+4. Not covered: third-party software installed by the Dockerfile or used by the guide (dsh, cloudflared, rclone,
+   LadybugDB, the MCP SDK, GitHub's MCP server, Claude Code, Node.js, Debian, …) keeps its own licence and terms.
+   The names "BabyKalki" and "OpenKalki" are project names and are not licensed for naming other products.

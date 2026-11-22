@@ -1,0 +1,181 @@
+# $DSH_HOME/cordis.patch.yml — BabyKalki's HOME patch layer for dsh (outranks the profile's own patch).
+# v1.0 (20 Nov 2026: + section 5 private dashboard rows since v0.7). v0.5 (19 Nov 2026: section 0 privacy rows; the Librarian's full key is OUT of this process; v0.4 19 Nov) — written against dsh 0.2.2-rc.3; BOOTED on Nimbuz inside the real image on 18 Nov 2026
+# (0 activation errors) and used by six thinking citizens in the 19 Nov 2026 dry run — after the v0.4 fix below:
+# v0.3 added the zai-coding provider but never SELECTED it, so dsh kept its own default (DeepSeek) and the first call
+# failed with MISSING_CREDENTIAL. v0.4 adds the `agent-default-model` row.
+# The supervisor REWRITES this file from the image at every start. Put your own additions in
+# $DSH_HOME/cordis.founder.yml — they are appended after this text (shipped first, yours after).
+# Check what dsh actually composed with:   dsh --profile web --dump-config
+# (run --dump-config in a throwaway container: it rewrites the profile's root cordis.yml).
+# Remember: a patch row REPLACES the whole `config` of the row it names — it never merges.
+
+# 0) Privacy: nothing goes back to DeepSeek — no telemetry, no feedback uploads, no session logs (v0.5).
+#    VERIFIED on dsh 0.2.2-rc.3 (19 Nov 2026, egress logged per connection): with v0.4's settings, clicking 👍/👎 or
+#    More → Feedback → Submit sent the conversation log to dsh-otel-collector.deepseeksvc.com (row
+#    `session-telemetry-otel`, default mode FEEDBACK_ONLY, applies with GLM too). With the env below the same click
+#    reached api.z.ai only. The rows below are the second lock; with them `--dump-config` showed exactly these values and
+#    no new activation errors.
+#    ENV (set by the image AND forced again by bk_supervisor.py in dsh's env unless BK_ALLOW_TELEMETRY=1):
+#      DSH_TELEMETRY_MODE=DISABLED            "DISABLED constructs no transport" (verified on rc.3)
+#      DSH_TELEMETRY_OTLP_URL=http://127.0.0.1:9/   if anything re-enables it, it goes nowhere (verified harmless on rc.3)
+#      DSH_TELEMETRY_DISABLED=1               dsh's own kill switch (adds `session-telemetry-otel: disabled`; read in
+#                                             dsh's boot code, Oct 2026 — belt and braces, harmless if ignored)
+#    What stays: the session download (your browser only) and the one extra title call per new session (to Z.ai, your
+#    chosen provider). Since v0.7 (section 5 below) "Sign in", the DeepSeek account cards, 👍/👎 + the Feedback menu and
+#    the Settings toggle "Upload Session Log when using the official model API" are HIDDEN (with BK_DASHBOARD=0 too) — not
+#    finding them is the check. Only if you re-enable `ui-settings-session-log` in cordis.founder.yml does the toggle show,
+#    and then it must read OFF. "Sign in" is inert either way (the DeepSeek account rows below are off).
+- id: session-telemetry-otel          # 👍/👎/Feedback "Submit" uploaded the conversation to dsh-otel-collector.deepseeksvc.com
+  disabled: true
+- id: session-log-deepseek            # Settings → "Upload Session Log when using the official model API"
+  config: { enabled: false }
+- id: plugin-package-inventory-deepseek   # your plugin list inside DeepSeek API requests
+  disabled: true
+- id: deepseek-account                # "Sign in" with a DeepSeek account
+  disabled: true
+- id: llm-deepseek-account
+  disabled: true
+- id: web-search-deepseek             # web search through api.deepseek.com
+  disabled: true
+- id: desktop-product-telemetry       # desktop-only product events (already off on web; belt and braces)
+  disabled: true
+- id: product-analytics
+  disabled: true
+
+# 1) Models: Z.ai GLM Coding Plan through its Anthropic-compatible endpoint.
+#    The key is read from the ZAI_API_KEY environment variable (a Nimbuz Secret) — never written here.
+- id: llm-pi-ai
+  config:
+    providers:
+      zai-coding:
+        displayName: Z.ai GLM Coding Plan
+        api: anthropic-messages
+        baseURL: https://api.z.ai/api/anthropic
+        apiKeyEnv: ZAI_API_KEY
+        retryPolicy: { mode: normal, maxRetries: 3 }
+        models:
+          - id: glm-5.3            # v0.4: EVERY citizen uses this one (it is the default model, row below)
+            name: GLM-5.3
+            contextWindow: 200000  # default 200k; the 1M window spends quota faster
+          - id: glm-5.3-flash      # listed for later: per-citizen Flash (Librarian, Scout, Steward) is not configured yet
+            name: GLM-5.3-Flash
+            contextWindow: 200000
+
+# 1b) Select it. Without this row dsh keeps its built-in default model (DeepSeek) and no citizen can think.
+#     VERIFIED 19 Nov 2026 on Nimbuz (dsh 0.2.2-rc.3): `--dump-config` then shows zai-coding / glm-5.3 and all six citizens answer.
+- id: agent-default-model
+  config: { provider: zai-coding, model: glm-5.3 }
+
+# 2) Connectors (MCP). Each one uses the NARROWEST token that works. Add them one level at a time.
+- insert:
+    # The Library — one row PER CITIZEN, each sending that citizen's own token (generated by the supervisor at every start).
+    # The token decides who is calling; Librarian-only tools refuse everyone else.
+    # Each row needs its OWN serverName (`library-<citizen>`): dsh reserves a serverName once per scope, and v0.2's six
+    # rows all named `library` made "5 entries did not activate" (seen on Nimbuz, 18 Nov). dsh names the tools
+    # mcp__<serverName>__<tool>, so a citizen's Library tools are e.g. mcp__library-scout__recall.
+    # VERIFIED on rc.3 (Nimbuz, 18 Nov 2026): `!!js process.env.X` in `headers` works; six unique serverNames → 0 errors.
+    # v0.5 — ENFORCED: the Librarian's FULL token (commit, reject, retire, render cards) is NOT in this process any more.
+    # Commits happen in the "Librarian round" (bk_supervisor.py): a separate headless dsh as its own Linux user (bklib) with
+    # its own config (cordis.librarian.yml). Here `library-librarian` carries the read-and-propose "librarian desk" token
+    # (recall, coverage, propose, list proposals/tasks/connections/approvals, check_approval) so the founder can still
+    # talk to the Librarian in the web UI. Proven (the OpenKalki team, 19 Nov, rc.3 throwaway): with the full token out of this
+    # process, a Scout session's commit attempts through every remaining connector were REFUSED.
+    # ADVISORY (honest): the other five tokens are all in this one process's environment, so a session CAN use another
+    # citizen's row (or read the token from /proc). With BK_CITIZEN_PRESETS=1 the supervisor moves each row into that
+    # citizen's preset (section 4) and disables these root rows — convenience, not a lock.
+    - id: mcp-library-warden
+      name: '@deepseek-ai/dsh-mcp-client'
+      config: { serverName: library-warden, transport: streamable-http, url: http://127.0.0.1:7801/mcp,
+                headers: { X-Library-Token: !!js process.env.LIBRARY_TOKEN_WARDEN } }
+    - id: mcp-library-librarian
+      name: '@deepseek-ai/dsh-mcp-client'
+      config: { serverName: library-librarian, transport: streamable-http, url: http://127.0.0.1:7801/mcp,
+                headers: { X-Library-Token: !!js process.env.LIBRARY_TOKEN_LIBRARIAN_DESK } }
+    - id: mcp-library-reviewer
+      name: '@deepseek-ai/dsh-mcp-client'
+      config: { serverName: library-reviewer, transport: streamable-http, url: http://127.0.0.1:7801/mcp,
+                headers: { X-Library-Token: !!js process.env.LIBRARY_TOKEN_REVIEWER } }
+    - id: mcp-library-steward
+      name: '@deepseek-ai/dsh-mcp-client'
+      config: { serverName: library-steward, transport: streamable-http, url: http://127.0.0.1:7801/mcp,
+                headers: { X-Library-Token: !!js process.env.LIBRARY_TOKEN_STEWARD } }
+    - id: mcp-library-builder
+      name: '@deepseek-ai/dsh-mcp-client'
+      config: { serverName: library-builder, transport: streamable-http, url: http://127.0.0.1:7801/mcp,
+                headers: { X-Library-Token: !!js process.env.LIBRARY_TOKEN_BUILDER } }
+    - id: mcp-library-scout
+      name: '@deepseek-ai/dsh-mcp-client'
+      config: { serverName: library-scout, transport: streamable-http, url: http://127.0.0.1:7801/mcp,
+                headers: { X-Library-Token: !!js process.env.LIBRARY_TOKEN_SCOUT } }
+
+    # GitHub — official github/github-mcp-server v2.2.0 (binary in the image, checksum-verified). Added at L4.
+    # Token: fine-grained, ONE repo, Contents + Pull requests + Issues read & write (Contents is needed to push branches).
+    # Builder + Reviewer only.
+    # - id: mcp-github
+    #   name: '@deepseek-ai/dsh-mcp-client'
+    #   config:
+    #     serverName: github
+    #     transport: stdio
+    #     command: /usr/local/bin/github-mcp-server
+    #     args: ['stdio', '--toolsets', 'repos,issues,pull_requests']
+    #     env:
+    #       GITHUB_PERSONAL_ACCESS_TOKEN: !!js process.env.BK_GITHUB_TOKEN   # explicit: dsh scrubs *TOKEN* vars from children
+
+    # 3) The automatic diary — a tiny local plugin that appends every committed session event.
+    - id: babykalki-diary
+      name: /opt/bk/babykalki-diary.mjs        # absolute-path local plugin row in the HOME layer: VERIFIED on rc.3 (no activation error)
+      config:
+        root: /data/diary
+        hashesFile: /run/bk/secret-hashes      # hashes of your own secret values, for exact-match redaction
+
+# 4) Citizen presets (v0.5, BK_CITIZEN_PRESETS, default 1): the supervisor appends six agent presets here at every start
+#    (one per citizen, display name from its self card), rendered from /opt/bk/cordis.citizens.tpl.yml. Pick one per new
+#    session in the web UI's preset menu. See that file for what is verified and what is not.
+#    v0.7: with presets on, the same rendered text also makes the Warden the default for new sessions and hides dsh's
+#    PTC / Minimal / Creator modes (bk_presets.py, "dashboard rows").
+
+# 5) The private dashboard (v0.7, 20 Nov 2026): the dsh web UI shows BabyKalki, not a DeepSeek product.
+#    Every row below only DISABLES a stock dsh row; nothing new runs. VERIFIED on dsh 0.2.2-rc.3 (20 Nov 2026, local web
+#    boot + headless Chromium): 0 activation errors, the menus/buttons named below are gone, the citizens still answer.
+#    The BabyKalki panel, brand, citizen buttons and window title come from a small browser plugin the supervisor writes
+#    at every start (bk_dash.py → /run/bk/dash/bk-dashboard, row `babykalki-dashboard`, BK_DASHBOARD=0 turns it off).
+#    The founder's slash commands (/brief, /tasks, /approve-requests, /connections, /remember, /handoff, /whoami) are skills the
+#    supervisor writes into $DSH_HOME/skills/ (BK_DASH_SKILLS=0: not written). To get any row back: in cordis.founder.yml
+#        - id: <row id>
+#          disabled: false
+- id: ui-brand-official               # DeepSeek Harness artwork + whale (the BabyKalki brand replaces it)
+  disabled: true
+- id: ui-settings-account             # "Sign in" / DeepSeek account (the account rows above are already off)
+  disabled: true
+- id: ui-account-notifications        # DeepSeek account notice cards
+  disabled: true
+- id: message-feedback                # 👍/👎 + feedback notes (stayed in the session log only since v0.5; now gone)
+  disabled: true
+- id: ui-message-feedback
+  disabled: true
+- id: command-feedback                # the /feedback command
+  disabled: true
+- id: ui-settings-session-log         # Settings toggle "Upload Session Log when using the official model API"
+  disabled: true
+- id: open-in-app                     # "Open in VS Code/Finder…" — desktop apps on YOUR laptop; the server has none
+  disabled: true
+- id: ui-open-in-app
+  disabled: true
+- id: entry-customization             # "Create your plugin" / "Browse other plugins" menus
+  disabled: true
+- id: ui-plugin-manager               # the Plugins page: installing dsh plugins from the web UI bypasses the kit
+  disabled: true
+- id: llm-deepseek                    # DeepSeek's own models in the model picker (only GLM-5.3 / Flash remain)
+  disabled: true
+
+# Notes
+# - The web listener stays on 127.0.0.1:3080. Do NOT set webserver.config.host to a wildcard (dsh refuses it anyway).
+# - --public-url and --trusted-host are passed on the command line by bk_supervisor.py.
+# - Citizens are working FOLDERS, not separate dsh agents (inside dsh every session's agent is called "lead"); a citizen's
+#   identity comes from its preset, folder, AGENTS.md rules, self card and its own Library row (19 Nov 2026 dry run). v0.7:
+#   the dashboard makes each citizen's folder a dsh workspace named after the citizen, so sessions are grouped by citizen.
+# - Citizens work in /data/citizens/<name>/work. dsh loads /data/citizens/<name>/AGENTS.md (rules, from the image) and
+#   AGENTS.local.md (the self card, written by the Librarian) through its project instruction chain. VERIFIED 19 Nov 2026:
+#   a citizen started in work/ knew its role from the parent folder's AGENTS.md (the self card was not checked separately).
+#   The chain stops at a folder containing .git: clone repos INTO work/repos/.
+# - dsh has NO network sandbox: limiting a citizen's web access is advisory (see the guide, "Enforced vs advisory").

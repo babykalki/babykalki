@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>BabyKalki change history (v1.3)</title>
+<meta name="description" content="Every earlier version of BabyKalki, newest first: what changed and what was tested.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://bk.openkalki.org/changes.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BabyKalki">
+<meta property="og:title" content="BabyKalki change history">
+<meta property="og:description" content="Every earlier version of BabyKalki, newest first: what changed and what was tested.">
+<meta property="og:url" content="https://bk.openkalki.org/changes.html">
+<meta property="og:image" content="https://bk.openkalki.org/img/og-babykalki.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="BabyKalki — six AI citizens that work for your startup. Free founder&#x27;s guide at bk.openkalki.org">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0A0813">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<style>
+:root{
+  color-scheme:dark;
+  --void:#0A0813;--l1:#110E1D;--l2:#181327;--l3:#201A33;
+  --b1:#241D3A;--b2:#2E2548;--b3:#3A2F58;--b4:#4A3D6E;
+  --indigo:#7C6CFF;--btn:#6D5BF5;--btnh:#5A48E6;--petal:#C9B8FF;--petal2:#E4DCFF;
+  /* contrast vs --void #0A0813 (WCAG 2.x): t1 16.5:1 · t2 #A79FC4 7.95:1 · t3 #8A80B0 5.48:1 (was #6B6290 3.57:1);
+     t3 on --l1 5.25:1, on --l2 4.99:1, on --l3 4.61:1. White on --btn 4.70:1, on --btnh 6.0:1. */
+  --t1:#ECE8FA;--t2:#A79FC4;--t3:#8A80B0;--gold:#E8B339;--ok:#4BD6A1;--err:#FF6B81;
+  --r:14px;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+  --navh:52px;--subh:48px;
+}
+*{box-sizing:border-box}
+html{scroll-padding-top:calc(var(--navh) + var(--subh) + 12px);-webkit-text-size-adjust:100%}
+@media(max-width:599px){html{scroll-padding-top:calc(var(--navh) + 10px)}}
+body{margin:0;background:var(--void);color:var(--t1);font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans",sans-serif;overflow-x:hidden;overflow-x:clip}
+a{color:var(--petal)}a:hover{color:var(--petal2)}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.wrap{max-width:880px;margin:0 auto;padding:0 18px}
+img,svg,video,iframe,table{max-width:100%}
+pre,code{overflow-wrap:normal}
+@media(prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+.skip{position:absolute;left:8px;top:-200px;z-index:100;background:var(--gold);color:#1b1405;font-weight:700;padding:12px 16px;border-radius:10px;text-decoration:none;min-height:44px}
+.skip:focus{top:8px}
+.banner{background:repeating-linear-gradient(135deg,#2a1f08 0 14px,#231a07 14px 28px);color:#FFE9A8;border-bottom:1px solid #5a4510;font-size:14px;text-align:center;padding:8px 14px}
+.banner b{color:var(--gold)}
+
+/* ---- navigation: group tabs + section pills (desktop), Contents drawer (phone) ---- */
+nav.top{position:sticky;top:0;z-index:20;background:rgba(10,8,19,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--b1)}
+nav.top .row1{display:flex;align-items:center;gap:10px;height:var(--navh)}
+nav.top .row2{height:var(--subh);border-top:1px solid var(--b1)}
+nav.top .row2 .wrap{height:100%}
+.brand{display:flex;align-items:center;gap:8px;font-weight:700;text-decoration:none;color:var(--t1);white-space:nowrap;min-height:44px}
+.brand svg{width:24px;height:24px}
+.groups{display:flex;gap:4px;margin-left:auto}
+.groups a,.subnav a{display:inline-flex;align-items:center;min-height:44px;min-width:44px;justify-content:center;color:var(--t2);text-decoration:none;font-size:15px;padding:0 12px;border-radius:999px;white-space:nowrap}
+.groups a.on{color:var(--t1);background:var(--l3);box-shadow:inset 0 0 0 1px var(--b4)}
+.groups a:hover,.subnav a:hover{color:var(--t1);background:var(--l2)}
+.subnav{display:none;gap:2px;height:100%;align-items:center;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none}
+.subnav::-webkit-scrollbar{display:none}
+.subnav.on{display:flex}
+.subnav .gl{color:var(--t3);font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-right:6px;white-space:nowrap}
+.subnav a{font-size:14px}
+.subnav a.on{color:var(--t1);background:var(--l3)}
+.menu-btn{display:none;margin-left:auto;min-height:44px;min-width:44px;padding:0 14px;border-radius:999px;background:var(--l3);border:1px solid var(--b4);color:var(--t1);font:600 15px system-ui;cursor:pointer}
+@media(max-width:599px){.groups,nav.top .row2{display:none}.menu-btn{display:inline-flex;align-items:center;gap:6px}}
+
+.drawer-bg{position:fixed;inset:0;z-index:40;background:rgba(5,4,10,.7)}
+.drawer{position:fixed;top:0;right:0;bottom:0;z-index:41;width:min(340px,88vw);background:var(--l1);border-left:1px solid var(--b3);overflow-y:auto;padding:10px 14px 30px;overscroll-behavior:contain}
+.drawer[hidden],.drawer-bg[hidden]{display:none}
+.drawer .dh{display:flex;align-items:center;justify-content:space-between;position:sticky;top:-10px;background:var(--l1);padding:6px 0}
+.drawer .dh b{font-size:17px}
+.drawer .close{min-height:44px;min-width:44px;border-radius:999px;background:var(--l3);border:1px solid var(--b4);color:var(--t1);font:600 15px system-ui;cursor:pointer}
+.drawer h4,.drawer .dgh{margin:14px 0 2px;font-weight:700;color:var(--gold);font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+.drawer a{display:flex;align-items:center;min-height:44px;padding:0 10px;border-radius:10px;color:var(--t1);text-decoration:none}
+.drawer a:hover,.drawer a.on{background:var(--l3)}
+
+
+/* ---- hero & base type ---- */
+header.hero{padding:44px 0 24px;position:relative}
+header.hero:before{content:"";position:absolute;top:-200px;right:0;width:min(700px,100%);height:700px;background:radial-gradient(circle,rgba(124,108,255,.20),rgba(124,108,255,0) 62%);pointer-events:none;z-index:-1}
+.eyebrow{color:var(--gold);font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-size:13px}
+h1{font-size:clamp(30px,6.4vw,50px);line-height:1.12;margin:.3em 0 .4em;letter-spacing:-.01em}
+h1 .grad{background:linear-gradient(90deg,var(--petal2),var(--indigo));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{font-size:clamp(18px,2.6vw,21px);color:var(--t2);max-width:40em}
+h2{font-size:clamp(24px,4.4vw,32px);margin:0 0 .5em;line-height:1.2}
+h2 .num{color:var(--t3);font-weight:500;margin-right:.35em}
+h3{font-size:20px;margin:1.4em 0 .4em}
+.grouphead{margin:46px 0 0;padding:10px 0 0;color:var(--gold);font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+section{padding:40px 0 22px;border-top:1px solid var(--b1)}
+.grouphead+section{border-top:0;padding-top:14px}
+p,li{color:var(--t1)}
+.muted{color:var(--t2)}.small{font-size:14px}
+.btns{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 6px}
+.btn{display:inline-flex;align-items:center;min-height:44px;line-height:1.25;background:var(--btn);color:#fff;text-decoration:none;padding:8px 18px;border-radius:999px;font-weight:600;font-size:16px}
+.btn:hover{background:var(--btnh);color:#fff}
+.btn.ghost{background:transparent;border:1px solid var(--b4);color:var(--t1)}
+.btn.ghost:hover{background:var(--l2)}
+.card{background:var(--l1);border:1px solid var(--b1);border-radius:var(--r);padding:16px 18px;margin:12px 0}
+.grid{display:grid;gap:12px;grid-template-columns:1fr}
+.grid>.card{margin:0}
+@media(min-width:680px){.grid.two{grid-template-columns:1fr 1fr}.grid.three{grid-template-columns:1fr 1fr 1fr}}
+.get li{margin:.25em 0}
+.get li::marker{content:"✓  ";color:var(--ok)}
+.rules{counter-reset:r;list-style:none;padding:0}
+.rules li{counter-increment:r;position:relative;padding:8px 10px 8px 44px;margin:6px 0;background:var(--l1);border:1px solid var(--b1);border-radius:10px}
+.rules li:before{content:counter(r);position:absolute;left:12px;top:8px;width:22px;height:22px;border-radius:50%;background:var(--l3);color:var(--petal);font-weight:700;font-size:13px;display:grid;place-items:center}
+.story{background:linear-gradient(180deg,var(--l2),var(--l1));border:1px solid var(--b2);border-radius:var(--r);padding:20px 22px;font-size:18px}
+.story p{margin:.6em 0}
+.cit{display:flex;gap:12px;align-items:flex-start}
+.cit .ico{flex:0 0 40px;height:40px;border-radius:12px;background:var(--l3);display:grid;place-items:center;font-size:20px}
+.cit h3{margin:0 0 4px;font-size:18px}
+.tag{display:inline-block;font-size:12px;padding:2px 8px;border-radius:999px;background:var(--l3);color:var(--t2);margin:2px 4px 2px 0;border:1px solid var(--b2)}
+.tag.pro{color:var(--petal);border-color:var(--b4)}
+.tag.flash{color:var(--ok)}
+.tv{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:#1b1405;background:var(--gold);border-radius:4px;padding:1px 6px;margin:0 3px;vertical-align:1px;white-space:nowrap}
+.ok-t{display:inline-block;font-size:11px;font-weight:700;text-transform:uppercase;color:#05231a;background:var(--ok);border-radius:4px;padding:1px 6px;margin:0 3px;vertical-align:1px;white-space:nowrap}
+
+/* ---- levels, progress, details form ---- */
+.level{background:var(--l1);border:1px solid var(--b2);border-radius:var(--r);padding:18px;margin:18px 0}
+.level.isdone{border-color:#2f6b55}
+.level .lhead{display:flex;gap:12px;align-items:center;margin-bottom:6px;flex-wrap:wrap}
+.level .lnum{flex:0 0 46px;height:46px;border-radius:12px;background:linear-gradient(135deg,var(--btn),#4B3FD6);display:grid;place-items:center;font-weight:800;font-size:18px}
+.level.isdone .lnum{background:linear-gradient(135deg,#2fa77c,#1f7458)}
+.level h3{margin:0;font-size:20px;flex:1 1 220px}
+.donebox{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 12px;border-radius:999px;border:1px solid var(--b4);background:var(--l2);cursor:pointer;font-size:15px;color:var(--t1);user-select:none}
+.donebox input{width:22px;height:22px;accent-color:var(--ok);margin:0}
+.level.isdone .donebox{border-color:var(--ok)}
+.progress{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:10px 0}
+.progress .bar{flex:1 1 200px;height:10px;background:var(--l3);border-radius:999px;overflow:hidden;border:1px solid var(--b2)}
+.progress .bar i{display:block;height:100%;width:0;background:var(--ok);transition:width .2s}
+.progress b{color:var(--ok)}
+.details-form{background:var(--l1);border:1px solid var(--b4);border-radius:var(--r);padding:16px 18px;margin:16px 0}
+.details-form .fields{display:grid;gap:10px 14px;grid-template-columns:1fr}
+@media(min-width:680px){.details-form .fields{grid-template-columns:1fr 1fr}}
+.details-form label{display:flex;flex-direction:column;gap:4px;font-size:14px;color:var(--t2)}
+.details-form input{min-height:44px;font:16px system-ui;color:var(--t1);background:var(--void);border:1px solid var(--b4);border-radius:10px;padding:0 12px;width:100%}
+.details-form input::placeholder{color:var(--t3)}
+.details-form .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:12px}
+.details-form button{min-height:44px;padding:0 16px;border-radius:999px;font:600 15px system-ui;cursor:pointer;background:var(--l3);border:1px solid var(--b4);color:var(--t1)}
+.done{border-left:3px solid var(--ok);background:rgba(75,214,161,.07);padding:8px 12px;border-radius:0 8px 8px 0;margin:10px 0}
+.done b{color:var(--ok)}
+.paste{border:1px solid var(--b4);border-radius:12px;overflow:hidden;margin:12px 0;background:var(--l2)}
+.paste .head,.code .head{display:flex;align-items:center;gap:8px;padding:4px 6px 4px 12px;background:var(--l3);border-bottom:1px solid var(--b2);font-size:13px;color:var(--t2);min-height:52px}
+.paste .head b{color:var(--petal);white-space:nowrap}
+.paste .head .sub{white-space:nowrap}
+.paste .fillnote{display:none;padding:6px 14px;font-size:13px;color:var(--ok);border-top:1px solid var(--b2)}
+.paste.filled .fillnote{display:block}
+.paste mark{background:rgba(75,214,161,.18);color:var(--t1);border-radius:3px;padding:0 2px}
+@media(max-width:520px){.level{padding:14px 12px}.card{padding:14px}.paste .head .sub{display:none}.paste pre{padding:10px 12px}}
+.head .sp{flex:1}
+.paste pre{white-space:pre-wrap;word-wrap:break-word;margin:0;padding:12px 14px;font:15px/1.55 system-ui,sans-serif;color:var(--t1)}
+.code{border:1px solid var(--b2);border-radius:12px;overflow:hidden;margin:10px 0;background:#08060f}
+.code pre{margin:0;padding:12px 14px;overflow:auto;max-height:520px;font:13px/1.5 var(--mono);color:#d9d3f2;tab-size:2}
+@media(max-width:700px){.code pre{max-height:60vh}}
+.code .head .fn{font-family:var(--mono);color:var(--t1);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.code pre code{background:none;border:0;padding:0;font-size:inherit;word-break:normal;color:inherit}
+button.copy,a.dl{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px;font:600 14px system-ui;color:var(--t1);background:var(--b2);border:1px solid var(--b4);border-radius:10px;padding:0 14px;cursor:pointer;text-decoration:none;white-space:nowrap}
+button.copy:hover,a.dl:hover{background:var(--b3);color:var(--t1)}
+a.dl.ghost{background:transparent}
+button.copy.done{background:var(--ok);color:#05231a;border-color:var(--ok)}
+details{margin:10px 0}
+details>summary{cursor:pointer;list-style:none;padding:10px 12px;min-height:44px;border-radius:10px;background:var(--l2);border:1px dashed var(--b4);color:var(--t2);font-weight:600;font-size:15px}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--indigo)}
+details[open]>summary:before{content:"▾ "}
+details.hood>summary:after{content:" — for developers";font-weight:400;color:var(--t3)}
+details .inner{padding:4px 4px 2px}
+details.file>summary{font-family:var(--mono);font-size:14px;color:var(--t1);border-style:solid;border-color:var(--b2)}
+details.file>summary .what{font-family:system-ui;color:var(--t3);font-weight:400}
+
+/* ---- tables ---- */
+table{width:100%;border-collapse:collapse;font-size:15px;margin:10px 0}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--b1);vertical-align:top}
+th{color:var(--t2);font-weight:600;background:var(--l1)}
+.tablewrap{overflow-x:auto;border:1px solid var(--b1);border-radius:12px}
+.tablewrap table{margin:0}
+td.n,th.n{text-align:right;white-space:nowrap}
+tr.total td{font-weight:700;background:var(--l2)}
+td.acts{white-space:nowrap}
+td.acts a{margin:2px 4px 2px 0}
+.st{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.02em;border-radius:6px;padding:2px 8px;margin:1px 0;white-space:normal}
+.st.enf{background:rgba(75,214,161,.16);color:#7FE8C1;border:1px solid #2f6b55}
+.st.des{background:rgba(124,108,255,.16);color:var(--petal);border:1px solid var(--b4)}
+.st.part{background:rgba(232,179,57,.14);color:#F2CB6B;border:1px solid #5a4510}
+.st.adv{background:rgba(255,107,129,.12);color:#FF9AAA;border:1px solid #6b2a37}
+@media(max-width:600px){
+ table.stack tr:first-child,table.stackt tr:first-child{display:none}
+ table.stack tr,table.stackt tr{display:block;padding:10px 12px;border-bottom:1px solid var(--b1)}
+ table.stack td,table.stackt td{display:inline;border:0;padding:0;background:none!important}
+ table.stack td:first-child,table.stackt td:first-child{display:block;font-weight:700;margin-bottom:2px}
+ table.stackt td:not(:first-child){display:block;margin-top:4px;font-size:15px}
+ table.stack td.n{white-space:nowrap;color:var(--petal)}
+ table.stack td.n:before{content:attr(data-l) " ";color:var(--t3);font-weight:400}
+ table.stack td[data-l="≈ INR"]:before{content:" · ≈ ₹"}
+ table.stack td:not(.n):not(:first-child){display:block;font-size:14px;color:var(--t2);margin-top:3px}
+ table.stack tr.total{background:var(--l2)}
+ table.stackt td.acts{white-space:normal}
+}
+code{font-family:var(--mono);font-size:.88em;background:var(--l3);border:1px solid var(--b2);border-radius:5px;padding:1px 5px;word-break:break-word}
+
+/* ---- map ---- */
+.diagram{background:var(--l1);border:1px solid var(--b2);border-radius:var(--r);padding:10px;margin:14px 0}
+.diagram svg{width:100%;height:auto;display:block;max-width:560px;margin:0 auto}
+.mapm{display:none}
+@media(max-width:599px){
+ .diagram{padding:10px}
+ .diagram svg.mapsvg{display:none}
+ .mapm{display:flex;flex-direction:column;gap:6px}
+ .mapm .mb{background:var(--l2);border:1px solid var(--b3);border-radius:10px;padding:8px 10px;font-size:15px}
+ .mapm .mb b{display:block;font-size:16px}
+ .mapm .mb span{display:block;color:var(--t2);font-size:14px}
+ .mapm .mb.ctr{background:var(--l1);border-color:var(--indigo);display:flex;flex-direction:column;gap:6px}
+ .mapm .mb.ctr>b{color:var(--petal)}
+ .mapm .mb.dash{border-style:dashed}
+ .mapm .mb.gold{border-color:var(--gold)}
+ .mapm .ma{color:var(--petal);font-size:14px;text-align:center}
+}
+.callout{border:1px solid #5a4510;background:rgba(232,179,57,.08);border-radius:12px;padding:12px 14px;margin:12px 0}
+.callout b{color:var(--gold)}
+.callout.red{border-color:#6b2a37;background:rgba(255,107,129,.08)}.callout.red b{color:var(--err)}
+.callout.green{border-color:#2f6b55;background:rgba(75,214,161,.07)}.callout.green b{color:var(--ok)}
+.sha{font-family:var(--mono);font-size:13px;word-break:break-all;background:#08060f;border:1px solid var(--b2);border-radius:8px;padding:8px 10px;display:block;margin:6px 0}
+.lesson{display:grid;grid-template-columns:1fr;gap:6px;background:var(--l1);border:1px solid var(--b1);border-radius:12px;padding:12px 14px;margin:10px 0}
+.lesson .pain{color:var(--err);font-weight:700}.lesson .fix{color:var(--ok);font-weight:700}
+@media(min-width:680px){.lesson{grid-template-columns:1fr 1fr}}
+.faq details>summary{color:var(--t1);border-style:solid;border-color:var(--b1)}
+.changes li{margin:.3em 0}
+footer{border-top:1px solid var(--b1);padding:30px 0 60px;color:var(--t2);font-size:14px}
+footer .lic{background:var(--l1);border:1px solid var(--b2);border-radius:12px;padding:14px 16px;color:var(--t1);font-size:15px}
+.top-link{position:fixed;right:14px;bottom:16px;z-index:30;background:var(--l3);border:1px solid var(--b4);color:var(--t1);border-radius:999px;width:46px;height:46px;display:grid;place-items:center;text-decoration:none;opacity:.9}
+.weekend{display:grid;gap:10px;grid-template-columns:1fr}
+@media(min-width:680px){.weekend{grid-template-columns:1fr 1fr}}
+.weekend .card h3{margin:0 0 6px;color:var(--petal);font-size:17px}
+.weekend .card p{margin:0}
+@media print{nav.top,.top-link,button.copy,a.dl,.drawer,.drawer-bg,.skip{display:none}details{display:block}details>.inner,details>div{display:block}}
+
+/* use cases as collapsible cards */
+details.uc{background:var(--l1);border:1px solid var(--b1);border-radius:var(--r);margin:10px 0}
+details.uc>summary{background:none;border:0;color:var(--t1);font-size:18px;font-weight:700;padding:12px 16px}
+details.uc>.inner{padding:0 16px 10px}
+/* banner detail: full on desktop, link on phone */
+.banner .bmore{display:none;color:#FFE9A8}
+@media(max-width:599px){.banner .bdetail{display:none}.banner .bmore{display:inline;padding:14px 4px}}
+/* files table: compact on phone (descriptions are on files.html) */
+@media(max-width:599px){
+ .ftable tr:first-child{display:none}
+ .ftable tr{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;padding:6px 10px;border-bottom:1px solid var(--b1)}
+ .ftable td{border:0;padding:0}
+ .ftable td:nth-child(2){display:none}
+ .ftable tr{flex-wrap:nowrap}
+ .ftable td:first-child{flex:1 1 0;min-width:0;overflow-wrap:anywhere}
+ .ftable td:first-child code{word-break:break-all}
+ .ftable td.acts a.dl{padding:0 10px}
+ .ftable td.acts{white-space:nowrap}
+}
+/* v0.6: site bar (only on the published site: guide · encyclopedia · status · community) */
+.sitebar{background:#07060d;border-bottom:1px solid var(--b1);font-size:14px}
+.sitebar .wrap{display:flex;flex-wrap:wrap;gap:4px 18px;align-items:center;min-height:38px;padding-top:4px;padding-bottom:4px}
+.sitebar a{color:#C9B8FF;text-decoration:none;padding:6px 0}
+.sitebar a:hover,.sitebar a:focus-visible{text-decoration:underline}
+.sitebar a[aria-current="page"]{color:#ECE8FA;font-weight:700}
+.sitebar .sb-name{color:#ECE8FA;font-weight:700;margin-right:auto}
+.groups.groups-files{display:flex}
+/* ---- v0.7: hero facts, community card with QR ---- */
+.facts{list-style:none;padding:0;margin:14px 0 4px;display:grid;gap:6px;max-width:44em}
+.facts li{display:grid;grid-template-columns:5.4em 1fr;gap:10px;align-items:baseline;font-size:16px;color:var(--t1)}
+.facts li b{color:var(--gold);font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+.btn.tg{background:#17729F;color:#fff}.btn.tg:hover{background:#14668F;color:#fff}  /* Telegram blue, darkened: white 5.3:1 */
+.morelinks{margin:4px 0 0;color:var(--t2)}
+.join{display:flex;gap:16px;align-items:center;background:var(--l1);border:1px solid var(--b2);border-radius:var(--r);padding:14px 16px;margin:18px 0}
+.join .qr{flex:0 0 auto;display:block;background:#fff;border-radius:10px;padding:6px;width:132px;line-height:0}
+.join .qr svg{display:block;width:100%;height:auto}
+.join .jt{min-width:0}.join .jt p{margin:.35em 0 0}
+.join.foot{margin:16px 0}.join.foot .qr{width:96px}
+@media(max-width:520px){.join{gap:12px;padding:12px}.join .qr{width:92px;padding:4px}.facts li{grid-template-columns:4.9em 1fr;font-size:15px}}
+@media(max-width:599px){.hero-join .qr{display:none}}
+.share{margin:14px 0 6px}
+figure.shot{margin:14px 0}figure.shot img{display:block;width:100%;height:auto;border-radius:10px;border:1px solid var(--b2)}figure.shot figcaption{margin-top:6px}
+/* v0.8 (R2-15): phones get one row of site bar and a one-line banner */
+@media(max-width:480px){.banner .blong{display:none}.banner{padding:6px 10px}
+.sitebar .wrap{flex-wrap:nowrap;overflow-x:auto;white-space:nowrap;gap:0 14px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.sitebar .wrap::-webkit-scrollbar{display:none}.sitebar .sb-name,.sitebar .sb-long{display:none}.sitebar .wrap{gap:0 13px}}
+/* v1.3: two paths — choose cards in the hero */
+.choose-h{margin:26px 0 10px;font-size:22px;line-height:1.25;border:0;padding:0}
+.pathcard{display:flex;flex-direction:column;gap:6px;border-color:var(--b3)}
+.pathcard.a{border-top:3px solid var(--indigo)}.pathcard.b{border-top:3px solid var(--ok)}
+.pathcard .pl{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--gold)}
+.pathcard h3{margin:0;font-size:19px;color:var(--t1)}
+.pd{margin:4px 0 10px;display:grid;grid-template-columns:5.6em 1fr;gap:5px 10px;font-size:14.5px;line-height:1.45}
+.pd dt{color:var(--t2);font-weight:700;font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;padding-top:3px}
+.pd dd{margin:0;color:var(--t1)}
+.pd dd b{color:var(--gold)}
+.pathcard .btn{margin-top:auto;align-self:flex-start}
+.btn.ok{background:#177A58;color:#fff}.btn.ok:hover{background:#12664A;color:#fff}
+.facts b.pa,.facts b.pb{font-size:inherit;letter-spacing:0;text-transform:none}
+.facts b.pa{color:var(--petal)}.facts b.pb{color:var(--ok)}
+.callout ul.limits{margin:0;padding-left:0;list-style:none}.callout ul.limits li{margin:.35em 0}
+
+html{scroll-padding-top:calc(var(--navh) + 12px)}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="sitebar"><div class="wrap"><span class="sb-name">BabyKalki</span><a href="/">Guide</a><a href="/files.html">Files</a><a href="/encyclopedia/">Encyclopedia</a><a href="/status/"><span class="sb-long">Live </span>status</a><a href="/community/">Community</a></div></div>
+<div class="banner"><b>v1.3 — 22 Nov 2026</b> — the change history. <a href="./">Back to the guide</a></div>
+<nav class="top" aria-label="Site">
+  <div class="wrap row1">
+    <a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E4DCFF"/><stop offset=".55" stop-color="#8E7DFF"/><stop offset="1" stop-color="#4B3FD6"/></linearGradient></defs><path d="M16 27C7 25 3 18 4 11c6 2 11 8 12 16z" fill="#4B3FD6" opacity=".7"/><path d="M16 27c9-2 13-9 12-16-6 2-11 8-12 16z" fill="#4B3FD6" opacity=".7"/><path d="M16 27C10 24 9 14 16 5c7 9 6 19 0 22z" fill="url(#lg)"/><circle cx="16" cy="24.4" r="1.9" fill="#E8B339"/></svg> BabyKalki</a>
+    <div class="groups groups-files"><a href="./#changes">← Back to the guide</a></div>
+  </div>
+</nav>
+<main class="wrap" id="main" tabindex="-1">
+<header class="hero" id="top" style="padding-bottom:6px">
+  <div class="eyebrow">BabyKalki · v1.3</div>
+  <h1 style="font-size:clamp(28px,5vw,40px)">Change history</h1>
+  <p class="lead">Every earlier version of BabyKalki, newest first. What changed in the current version is on <a href="./#changes">the guide page</a>.</p>
+</header>
+<section id="history" style="border-top:0;padding-top:10px">
+  <h3>v1.2 — 22 Nov 2026 (morning)</h3>
+  <p class="small">Path B: one-click on Nimbuz.</p>
+  <ul class="changes small">
+    <li><b>New section "One-click on Nimbuz"</b> (since v1.3: <a href="./#oneclick">Path B — One-click on Nimbuz</a>): Nimbuz now runs BabyKalki from one form in its catalogue. An honest comparison with Path A (setup effort, cost, sign-in protection, backups on the same disk vs off-site, custom domain, Telegram desk, updates), the form step by step with screenshots, and what we tested on 22 Nov 2026 (sign-in, approvals, the founder session, restarts, secrets in logs).</li>
+    <li>L3 said there are two paths. The encyclopedia explained Path B too (chapter 9).</li>
+    <li>Kit files: version number only (v1.2); nothing else changed.</li>
+  </ul>
+  <h3>v1.1 — 20 Nov 2026 (afternoon)</h3>
+  <p class="small">The community desk thinks.</p>
+  <ul class="changes small">
+    <li><b>Desk v2:</b> every message addressed to <code>@babykalki_bot</code> (mention, reply or DM) is answered by GLM-5.3 in plain words, with the most relevant guide sections as background — not as a gate. It knows the six citizens and the whole guide, helps with general founder questions (labelled as general tips), answers Hinglish in kind, and still hands BabyKalki facts it doesn't have to a human instead of inventing them.</li>
+    <li><b>Memory:</b> the last 48 h of the conversation it can see (so follow-ups work), short notes members share about themselves (<code>/memory</code> shows yours, <code>/forget</code> deletes them; never phones, e-mails or secrets), and community answers taught by admins (<code>/teach</code>, or replying to an escalation).</li>
+    <li>Safety: quoting the guide is no longer blocked; canary and secret checks, link allow-list, length cap and rate limits stay. Prototype on the founder's Coding Plan key (1,000 answers/day cap).</li>
+  </ul>
+  <h3>v1.0 — 20 Nov 2026</h3>
+  <ul class="changes small">
+    <li><b>Community and ecosystem</b> (<a href="./#community">new section</a>): a Telegram group with a QR code (<a href="community/">printable page</a>), a community desk bot that answers from this guide, and how to share your build, report mistakes, send fixes, fork with credit and run your own.</li>
+    <li><b>The desk answers more:</b> overview questions ("explain it simply", "what problem does it solve", Hinglish), the closest guide section instead of "I don't know" when the guide covers it, greetings get a welcome, anonymous group admins and Topics work. It still hands truly unknown questions to a human.</li>
+    <li><b>Your private dashboard</b> (<a href="./#private-dashboard">new subsection</a>): BabyKalki brand and panel, one workspace per citizen named from your naming ceremony, the home page opens ready to talk to the Warden (or the citizen you last picked), seven slash commands, a "restarted at…" note, DeepSeek's account/feedback/plugins UI hidden, only GLM models in the picker.</li>
+    <li><b>Your own public website</b> served by BabyKalki itself (v0.6), with the status page at <code>/status/</code>.</li>
+    <li><b>Honest status everywhere:</b> one version number and the counted test total; what is verified live vs still to verify; the Coding Plan prototype note for the desk.</li>
+    <li>Kit hardening: the build refuses a zip that misses anything the Dockerfile copies, or kit docs naming another version; status-page updates can no longer collide; the full test suite also passes inside the deploy zip.</li>
+  </ul>
+  <h3>v0.7 — 20 Nov 2026 (morning)</h3>
+  <ul class="changes small">
+    <li><b>New section: <a href="./#community">Community and ecosystem</a></b> — join, ask the desk, share your build, report mistakes and send fixes (no public code repository yet — say so), fork and remix with credit, spawn your own, and what is not built yet.</li>
+    <li><b>QR code to the group</b> (<code>t.me/babykalki</code>), made locally — no QR web service: on this page, in the footer, and as a printable page at <a href="community/">community/</a> (PNG and SVG to download).</li>
+    <li><b>Shorter start:</b> what / why / cost / time-to-start in four lines and two buttons (Start building, Join the community); a shorter banner.</li>
+    <li>The L6 community desk now runs live in <code>t.me/babykalki</code> on the founder's own BabyKalki (status: Community desk ON; first escalation reached the Steward). The other four "done when" checks are still to verify live.</li>
+    <li>Files page: e-mail-looking text in the file listings is marked so Cloudflare's e-mail obfuscation leaves it alone; <code>cloudflare-setup.md</code> says to turn that, Rocket Loader and Web Analytics off.</li>
+    <li><b>From the first v1 review</b> — the page now matches what was checked: the desk is live, v0.6 serves this site, the browser login passed, one version number and the counted test total everywhere; the hero no longer promises GitHub/Gmail/Telegram work before L4; the status page is at <code>www.yourdomain/status/</code>; L2 on a laptop is marked not yet run; citizens are picked from the preset menu; Connections are asked of the Steward (approvals at <code>/bk-approve</code>); the human mirror is marked planned and the real exit path stated; the login after a restart is described as it works; L0 checks Python 3.10+ and rclone; L3 has a first-time Nimbuz block; L2 builds exactly as the Dockerfile says; the Coding Plan answer is dated (17 Nov 2026) and the prototype opt-in is limited to a private test chat; no "doi: to come".</li>
+    <li><b>Your private dashboard</b> (<a href="./#private-dashboard">new subsection</a>): BabyKalki brand and panel, one workspace per citizen, the Warden as default, citizen buttons, seven slash commands (<code>/brief /tasks /approve-requests /connections /remember /handoff /whoami</code>), DeepSeek account/feedback/plugin parts switched off; the dsh login survives restarts (30-day cookie, secret backed up). New kit files <code>bk_dash.py</code>, <code>dash/</code>; checked locally on real dsh 0.2.2-rc.3, live <span class="tv">to verify</span>.</li>
+    <li>Shorter page: the full change history moved to <a href="changes.html">changes.html</a>; the file list folds away. A share image for link previews; share links for WhatsApp, Telegram and LinkedIn (plain links, no tracking).</li>
+    <li>Kit: <code>CLAUDE.md</code>, <code>README.md</code>, <code>LICENSE</code>, <code>.env.example</code> (adds <code>BK_LOCAL</code>; WhatsApp names marked "planned, not read") and <code>cloudflare-setup.md</code> updated; the build refuses kit docs that name another zip.</li>
+  </ul>
+  <h3>v0.6 — 20 Nov 2026</h3>
+  <p class="small">20 Nov 2026 — your own public website on the status page's server, and this guide moves to the founder's own BabyKalki.</p>
+  <ul class="changes small">
+    <li><b>Your public website:</b> <code>site/www/</code> in the zip is served at <code>/</code> by <code>bk_static.py</code>; the status page moves to <code>/status/</code> (<code>/status.json</code> and <code>/health</code> unchanged; <code>/status/</code> also works without a website). Its own Content-Security-Policy (own files only) and caching; the status page keeps the strict policy and no-cache. More file types served correctly (<code>.js</code>, fonts, <code>.zip</code>, <code>.sha256</code>, <code>.md</code>, <code>.yml</code>, <code>.py</code>). New setting <code>BK_SITE_DIR</code>. See <a href="./#website">Your public website</a>.</li>
+    <li>The status page links to <code>/status.json</code> and home. This page and the files page no longer use inline scripts (they load <code>page.js</code>), so they run under that policy too.</li>
+    <li>Tests: the website, both policies, the status page's new place, the old paths, no website = v0.5 behaviour, symlinks/dotfiles/traversal in both folders. 219 automated tests (v0.5: 190 with its hotfix). v0.6 was built on Nimbuz on 20 Nov 2026 and serves this site.</li>
+  </ul>
+  <h3>v0.5 — 19–20 Nov 2026</h3>
+  <p class="small">19 Nov 2026 (evening and night) — the two holes the founder's live test found are closed (commits and approvals are now enforced), a citizen picker, nothing goes back to DeepSeek, and one new, optional piece: a bot for your public community.</p>
+  <ul class="changes small">
+    <li><b>Enforced: only the Librarian round commits</b> (errata 17, the OpenKalki team's connector-scoping research). The Librarian's full Library key left the web dsh; a background round — headless dsh as a fourth Linux user <code>bklib</code>, own settings <code>cordis.librarian.yml</code>, only <code>ZAI_API_KEY</code> + that key — runs every <code>BK_LIBRARIAN_EVERY_MIN</code> (10) minutes when something is pending, or at once when the Warden creates <code>/data/run/librarian-requests/NOW</code>. One at a time, 10 minutes max; result on the status page and in <code>/data/diary/librarian-round/</code>. The web Librarian gets a read-and-propose "desk" key.</li>
+    <li><b>Enforced: only you approve.</b> <code>record_approval</code> is gone; citizens <code>request_approval</code> (exact text + SHA-256) and you decide on <code>https://&lt;agent host&gt;/bk-approve</code> — full text, Approve / Reject, behind Access, only <code>BK_FOUNDER_EMAILS</code>, CSRF-protected, refused unless the connection comes from cloudflared's user. Your tunnel route for <code>/bk-login</code> becomes <code>^/(bk-login|bk-approve(/.*)?)$</code>. v0.4 approvals load as "legacy, text not stored".</li>
+    <li><b>Citizen picker</b> (errata 19): six dsh agent presets, named from the self cards, each with only its own Library connector (<code>BK_CITIZEN_PRESETS=1|shared|0</code>); a broken preset can't stop dsh (and two failed starts switch them off). Honest: a convenience — the five citizen tokens still share one process.</li>
+    <li><b>Nothing to DeepSeek, verified:</b> the OpenKalki team's egress test on rc.3 showed 👍/👎 → Submit uploaded the conversation in v0.4. Section 0 of <code>cordis.patch.yml</code> now has the eight verified rows; env names corrected to the verified pair (<code>DSH_TELEMETRY_MODE=DISABLED</code>, <code>DSH_TELEMETRY_OTLP_URL=http://127.0.0.1:9/</code>) plus dsh's kill switch <code>DSH_TELEMETRY_DISABLED=1</code>.</li>
+    <li>Status page: Librarian round (result / time), approvals waiting, who can approve, citizen presets. New settings <code>BK_FOUNDER_EMAILS</code>, <code>BK_LIBRARIAN_EVERY_MIN</code>, <code>BK_CITIZEN_PRESETS</code>. 187 automated tests.</li>
+    <li><b>New: the Telegram community desk</b> (<a href="./#l6">L6</a>) — <code>bk_telegram.py</code>, standard-library Python, started by the supervisor only when <code>BK_TELEGRAM_BOT_TOKEN</code> is set. Welcome, <code>/start /help /rules /guide /faq /report</code>, answers from the public guide only (<code>community-kb.md</code>, generated from this page, plus your <code>community-kb.founder.md</code>), anti-spam for new members, flood limit, mute for repeat offenders, admin <code>/mute /unmute /ban /pause /resume /stats</code>, escalation to your moderators' chat and the Steward. <b>Unit-tested; a live test on Telegram is pending.</b></li>
+    <li><b>Approvals you can re-check:</b> an approval now stores the exact draft text (canonical form <code>bk-canon-1</code>) next to its SHA-256, and a new <code>check_approval</code> lets the Librarian and Reviewer recompute it before a commit or a send (from the founder's live test: the hash of the name slate could not be recomputed).</li>
+    <li>Naming ceremony and the browser login: PASS live; the web session has a schedule tool.</li>
+    <li><b>Its own user and secrets:</b> a third Linux user <code>bkcomm</code> (Dockerfile); the citizens no longer receive <code>BK_TELEGRAM_BOT_TOKEN</code>; its model key <code>BK_COMMUNITY_LLM_KEY</code> should be a separate pay-per-use key with a spend cap (OpenAI- or Anthropic-compatible); prototype-only opt-in <code>BK_COMMUNITY_USE_CODING_PLAN=1</code> reuses the Coding Plan key on its Anthropic endpoint (personal-use plan, shares the citizens' quota; default cap 300 calls a day).</li>
+    <li><b>Library:</b> a new service role <code>community</code> — may only add a task for the Steward (titled "[community] …") and propose a fact; every read tool refuses it.</li>
+    <li><b>Status page:</b> "Community desk (Telegram)": OFF / STARTING / ON / ERROR, and today's answered / escalated / spam-removed counts. Each day's counts go into the diary (<code>/data/diary/community/</code>); <code>/data/community</code> is in the backups.</li>
+    <li>Steward and shared rulebook: how to handle community escalations (member text is untrusted; nothing goes back to the group without your approval). README, <code>.env.example</code>, <code>CLAUDE.md</code>, Connections Register updated. (Earlier v0.5 draft: 158 automated tests; v0.4: 118.)</li>
+  </ul>
+  <h3>v0.4 — 19 Nov 2026</h3>
+  <p class="small">Everything below comes from the automated dry run that followed this guide on Nimbuz.</p>
+  <ul class="changes small">
+    <li><b>Blocking fix — citizens could not think:</b> <code>cordis.patch.yml</code> declared the Z.ai models but never selected one, so dsh kept its DeepSeek default. New row <code>agent-default-model: zai-coding / glm-5.3</code>; the L2 mission checks it.</li>
+    <li><b>Blocking fix — Nimbuz built nothing:</b> v0.3's zip had a <code>babykalki/</code> folder around the files, and Nimbuz failed with no logs. v0.4's zip has the files at the top; unzip it into an empty folder. "FAILED with no logs" is now in the troubleshooting.</li>
+    <li><b>Nimbuz Secrets are replaced, not merged</b> — warning in the README, <code>.env.example</code>, <code>CLAUDE.md</code> and the L3 mission; an update without new code is a restart only.</li>
+    <li><b>Pause / resume after an upload</b> — from the v0.4 re-run on Nimbuz: a new upload to a paused app needs <code>resume</code> (README).</li>
+    <li><b>New setting <code>BK_AGENT_HOST</code></b> for the private dashboard's name (default <code>agent.&lt;BK_DOMAIN&gt;</code>); the status page can use any name. The supervisor's log no longer says "local run" on a server with no domain set. New tests.</li>
+    <li>All six citizens run on GLM-5.3 (per-citizen Flash later); a citizen is described as what it is — a working folder with its own rules, not a separate dsh agent.</li>
+    <li>Off-switch drills the Nimbuz way (no shell): <code>BABYKALKI_STOP=1</code> + restart, or the Steward's stop; undo with <code>BK_CLEAR_STOP=1</code>, then back to 0 (the supervisor now reminds you).</li>
+    <li>Schedules marked "to verify" (no schedule tool in dsh's headless profile); R2 needs a payment card before the first bucket; real R2 still to verify.</li>
+    <li>"To verify" dropped where the dry run checked it: boot lease, wrong-key refusal, named tunnel, Access (add One-time PIN yourself), dsh's own login behind Access, a fresh start on a folder inside the bucket. 118 automated tests (was 109).</li>
+  </ul>
+  <h3>v0.3 — 18 Nov 2026</h3>
+  <p class="small">Everything below came from running BabyKalki live on Nimbuz.</p>
+  <ul class="changes small">
+    <li><b>Boot lease:</b> Nimbuz restarts run two copies for ~20 s; the new copy now waits (WAITING_FOR_LEASE) for the old copy's final snapshot before it restores. Tested locally and live.</li>
+    <li><b>Bug fixed in <code>cordis.patch.yml</code>:</b> each citizen's Library row now has its own name (<code>library-&lt;citizen&gt;</code>); in v0.2 only one of six started.</li>
+    <li><b>Bug fixed:</b> a final snapshot in the same second as a regular one failed.</li>
+    <li>Backups every 5 minutes on Nimbuz; size medium.r; how to deploy a zip without a repo; the Nimbuz login is the master key; Nimbuz's status field is unreliable.</li>
+    <li>"To verify" tags replaced by live results where we checked; the Enforced vs advisory table now says what was seen live. 109 automated tests (was 97).</li>
+    <li>Page: the Cloudflare step now lists all three tunnel routes (it showed two).</li>
+  </ul>
+  <h3>v0.2 — 17 Nov 2026</h3>
+  <ul class="changes small">
+    <li>Honest headline and promise: Claude Code builds and deploys; L0–L2 in a day, L3–L5 a preview until the dry run.</li>
+    <li>Backups rebuilt: copy never sync, COMPLETE markers, restore the newest complete snapshot, refuse to start when R2 is unreachable, restore test compares counts and hashes, pruning.</li>
+    <li>The Library tells the truth: ranked token search with total and source, MISS with coverage, <code>reject_proposal</code>, every write refuses when it changes nothing, per-citizen tokens, tasks, connections and approvals. Schema cut to what the tools use.</li>
+    <li>One shared secret filter tuned on real key formats and your own secret values; one hash-chain format with off-site anchors and redaction tombstones.</li>
+    <li>Public status page from a fixed template (the stated exception to rule 1), served by a safe static server; citizens can't write to it.</li>
+    <li>A supervisor with a STOP switch that needs no AI, separate users for infra, log redaction and rotation, restart backoff; the login link never goes into a log.</li>
+    <li>GitHub token scope corrected (Contents write) and the branch-protection limits of GitHub Free stated.</li>
+    <li>New sections: Enforced vs advisory, Personal data. Costs now include GST and card forex mark-up; Pro recommended for always-on.</li>
+    <li>Node 22+, models without <code>[1m]</code>, Telegram at L4, pinned versions with checksums, one checked zip with README, LICENSE and SHA256SUMS.</li>
+    <li>Page: grouped navigation and a Contents drawer on phones, larger tap targets, higher contrast, a phone version of the map, "Your details" that fill the missions, and per-level progress saved in your browser.</li>
+  </ul>
+  <p class="small muted">Thanks to an independent reviewer whose detailed review shaped this version.</p>
+</section>
+</main>
+<footer id="licence">
+  <div class="wrap">
+    <div class="lic">Code, configs and prompts: MIT. Guide text and diagrams: CC BY 4.0. Data: CC0. © 2026 Robin Dey. Cite as: Dey, R. (2026), BabyKalki v1.3, https://bk.openkalki.org/. "BabyKalki"/"OpenKalki" are project names. Third-party tools are used under their own terms.</div>
+    <p><a href="index.html">Back to the guide</a> · <a href="community/">Community on Telegram (QR code)</a> · <a href="changes.html">Change history</a></p>
+  </div>
+</footer>
+<a class="top-link" href="#top" aria-label="Back to top">↑</a>
+<script src="page.js"></script>
+</body>
+</html>

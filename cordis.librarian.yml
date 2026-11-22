@@ -1,0 +1,61 @@
+# cordis.librarian.yml — the HOME patch of the LIBRARIAN ROUND (BabyKalki v0.5, 19 Nov 2026). MIT licence.
+# bk_supervisor.py copies this file to /data/librarian-dsh/cordis.patch.yml (DSH_HOME of the round, owned by the user
+# bklib, mode 0700) at every start, then runs every BK_LIBRARIAN_EVERY_MIN minutes (default 10) or when
+# /data/run/librarian-requests/NOW appears:
+#     cd /data/citizens/librarian/round && dsh --profile headless "<the round prompt>"
+# as the Linux user bklib, with ONLY: ZAI_API_KEY, LIBRARY_TOKEN_LIBRARIAN, DSH_HOME, telemetry off (+ PATH, HOME, LANG, TZ).
+# This is the ONLY process that holds the Librarian's full token, so it is the only place a commit can happen. The web
+# dsh (all the other citizens) runs as `node`, which cannot read bklib's process environment or its DSH_HOME.
+# VERIFIED (the OpenKalki team, 19 Nov 2026, dsh 0.2.2-rc.3 throwaway): a headless round with only this row and only this token
+# listed a pending proposal and committed it; and in this build's offline check (rc.3 from npm + a stand-in model) the
+# round's tool list held only library-librarian.
+# The headless profile has no presets and no web rows; patch rows that name a row it doesn't have are skipped with a
+# warning (dsh's patch rule), so the privacy rows are safe here.
+
+# 0) Privacy — the same rows as the web patch (see cordis.patch.yml section 0).
+- id: session-telemetry-otel          # 👍/👎/Feedback "Submit" uploaded the conversation to dsh-otel-collector.deepseeksvc.com
+  disabled: true
+- id: session-log-deepseek            # Settings → "Upload Session Log when using the official model API"
+  config: { enabled: false }
+- id: plugin-package-inventory-deepseek   # your plugin list inside DeepSeek API requests
+  disabled: true
+- id: deepseek-account                # "Sign in" with a DeepSeek account
+  disabled: true
+- id: llm-deepseek-account
+  disabled: true
+- id: web-search-deepseek             # web search through api.deepseek.com
+  disabled: true
+- id: desktop-product-telemetry       # desktop-only product events (already off on web; belt and braces)
+  disabled: true
+- id: product-analytics
+  disabled: true
+
+# 1) Models (same as the web patch; the headless profile's own default is a DeepSeek model, so the selection row matters).
+- id: llm-pi-ai
+  config:
+    providers:
+      zai-coding:
+        displayName: Z.ai GLM Coding Plan
+        api: anthropic-messages
+        baseURL: https://api.z.ai/api/anthropic
+        apiKeyEnv: ZAI_API_KEY
+        retryPolicy: { mode: normal, maxRetries: 3 }
+        models:
+          - id: glm-5.3            # v0.4: EVERY citizen uses this one (it is the default model, row below)
+            name: GLM-5.3
+            contextWindow: 200000  # default 200k; the 1M window spends quota faster
+          - id: glm-5.3-flash      # listed for later: per-citizen Flash (Librarian, Scout, Steward) is not configured yet
+            name: GLM-5.3-Flash
+            contextWindow: 200000
+
+# 1b) Select it. Without this row dsh keeps its built-in default model (DeepSeek) and no citizen can think.
+#     VERIFIED 19 Nov 2026 on Nimbuz (dsh 0.2.2-rc.3): `--dump-config` then shows zai-coding / glm-5.3 and all six citizens answer.
+- id: agent-default-model
+  config: { provider: zai-coding, model: glm-5.3 }
+
+# 2) The Library — the Librarian's FULL token, and nothing else.
+- insert:
+    - id: mcp-library-librarian
+      name: '@deepseek-ai/dsh-mcp-client'
+      config: { serverName: library-librarian, transport: streamable-http, url: http://127.0.0.1:7801/mcp,
+                headers: { X-Library-Token: !!js process.env.LIBRARY_TOKEN_LIBRARIAN } }

@@ -1,0 +1,26 @@
+{
+  "name": "@babykalki/dsh-dashboard",
+  "version": "0.7.0",
+  "private": true,
+  "description": "BabyKalki's private dashboard for the dsh web UI: brand, the six citizens, links to approvals and status. MIT.",
+  "type": "module",
+  "main": "index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./client": "./client.js",
+    "./package.json": "./package.json"
+  },
+  "dsh": {
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-sidebar",
+        "@deepseek-ai/dsh-client-ui-conversation",
+        "@deepseek-ai/dsh-client-ui-layout",
+        "@deepseek-ai/dsh-client-ui-workspace",
+        "@deepseek-ai/dsh-api-workspace-controller"
+      ]
+    }
+  },
+  "license": "MIT"
+}

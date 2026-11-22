@@ -1,0 +1,29 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Status</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<style>body{font:17px/1.55 system-ui,sans-serif;background:#0A0813;color:#ECE8FA;max-width:40rem;margin:2rem auto;padding:0 1rem}
+table{border-collapse:collapse;width:100%}td{padding:.45rem .3rem;border-bottom:1px solid #2a2440}td:last-child{text-align:right;font-weight:600}
+.s{font-size:1.3rem}small{color:#B9B2D6}a{color:#C9B8FF}</style>
+<h1>Status</h1>
+<p class="s">System: <b>{{system_state}}</b></p>
+<table>
+<tr><td>Facts in the Library (live)</td><td>{{facts_live}}</td></tr>
+<tr><td>Proposals waiting for the Librarian</td><td>{{proposals_pending}}</td></tr>
+<tr><td>Librarian round (commits): last result / at</td><td>{{librarian_round}} {{librarian_round_at}}</td></tr>
+<tr><td>Approvals waiting for the founder</td><td>{{approvals_pending}}</td></tr>
+<tr><td>Who can approve</td><td>{{approvals_mode}}</td></tr>
+<tr><td>Citizen presets in the web UI</td><td>{{citizen_presets}}</td></tr>
+<tr><td>Open tasks (overdue)</td><td>{{tasks_open}} ({{tasks_overdue}})</td></tr>
+<tr><td>Connections (red)</td><td>{{connections}} ({{connections_red}})</td></tr>
+<tr><td>Off-site backup</td><td>{{backup_state}}</td></tr>
+<tr><td>Last backup</td><td>{{last_backup_at}}</td></tr>
+<tr><td>Last restore test</td><td>{{restore_test}} {{restore_test_at}}</td></tr>
+<tr><td>Diary files with an off-site anchor</td><td>{{diary_files}}</td></tr>
+<tr><td>Telemetry to DeepSeek (dsh)</td><td>{{telemetry}}</td></tr>
+<tr><td>Community desk (Telegram)</td><td>{{community_state}}</td></tr>
+<tr><td>Community today: answered / escalated / spam removed</td><td>{{community_answered}} / {{community_escalated}} / {{community_spam_removed}}</td></tr>
+</table>
+<p><small>Generated {{generated_at}} by BabyKalki {{version}} from a fixed template: counts and states only, no free text,
+nothing a citizen writes. This page is the one automatic exception to "the founder approves everything that leaves".
+Machine-readable: <a href="/status.json">status.json</a> · <a href="/">Home</a></small></p>
+</html>

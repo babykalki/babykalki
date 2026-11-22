@@ -1,0 +1,6 @@
+# Test fixtures contain FAKE secret-shaped strings on purpose (they test BabyKalki's secret filter).
+[extend]
+useDefault = true
+[allowlist]
+description = "fake secrets in tests"
+paths = ['''^tests/''', '''^website/files/tests-''']
